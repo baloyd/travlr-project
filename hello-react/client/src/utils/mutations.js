@@ -24,4 +24,16 @@ export const ADD_USER = gql`
   }
 `;
 
+export const ADD_REC = gql`
+  mutation addRec($nameOfRec:String!, $nameOfActivity:String!, $location:String!, $comment: String!){
+    addRec(nameOfRec: $nameOfRec, nameOfActivity:$nameOfActivity, location:$location,comment:$comment) {
+      recommendation {
+        nameOfRec
+        nameOfActivity
+        location
+        comment
+      }
+    }
+  }
+`;
 

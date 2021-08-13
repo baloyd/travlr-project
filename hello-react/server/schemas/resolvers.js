@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Recommendation } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -14,6 +14,11 @@ const resolvers = {
             const token = signToken(user);
 
             return{ token, user };
+        },
+        addRec: async(parent,{nameOfActivity,location,comment})=>{
+            const recommendation = await Recommendation.create({nameOfRec, nameOfActivity,location,comment});
+
+            return {recommendation};
         },
         //create the login
         login: async (parent, {email, password}) => {
