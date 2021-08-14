@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Recommendation } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -15,6 +15,7 @@ const resolvers = {
 
             return{ token, user };
         },
+    
         //create the login
         login: async (parent, {email, password}) => {
             //create a user variable that looks for an email
