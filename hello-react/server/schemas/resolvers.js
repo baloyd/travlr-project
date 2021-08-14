@@ -15,11 +15,7 @@ const resolvers = {
 
             return{ token, user };
         },
-        addRec: async(parent,{nameOfActivity,location,comment})=>{
-            const recommendation = await Recommendation.create({nameOfRec, nameOfActivity,location,comment});
-
-            return {recommendation};
-        },
+    
         //create the login
         login: async (parent, {email, password}) => {
             //create a user variable that looks for an email
