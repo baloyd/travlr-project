@@ -1,5 +1,5 @@
-const { Schema, model} = require('mongoose');
-const bcrypt = require('brypt');
+const { Schema, model } = require('mongoose');
+// const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
     {
@@ -18,7 +18,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         }
-        
+
     }
 );
 
@@ -31,15 +31,15 @@ const userSchema = new Schema(
 //       const saltRounds = 10;
 //       this.password = await bcrypt.hash(this.password, saltRounds);
 //     }
-  
+
 //     next();
 //   });
-  
+
 //   // custom method to compare and validate password for logging in
 //   userSchema.methods.isCorrectPassword = async function (password) {
 //     return bcrypt.compare(password, this.password);
 //   };
-  
-  const User = model('User', userSchema);
-  
-  module.exports = User;
+
+const User = model('User', userSchema);
+
+module.exports = User;
