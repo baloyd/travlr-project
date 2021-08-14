@@ -21,7 +21,7 @@ const postSchema = new Schema({
     cataId:
         { type: ObjectId, required: true },
     tags: [
-        { type: String, required: true },
+        { type: String },
     ]
 })
 
