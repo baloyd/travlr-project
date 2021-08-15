@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { CardColumns, Card, Button } from 'react-bootstrap';
 
+// Card and Button Styles
 const cardStyle = {
     background: '#DED5C4',
     color: '#305973',
     width: '24rem' 
 }
-
 const orangeButtonStyle = {
     background: '#EF7E56',
     textColor: '#F9F9F9',
@@ -48,6 +48,7 @@ const Resume=(comments=[])=>{
 
     return(
         <CardColumns>
+            {comments.map((comment)=>(
             <Card style={cardStyle} text='#305973' >
                 <Card.Body>
                     <Card.Title>Username</Card.Title>
@@ -65,10 +66,9 @@ const Resume=(comments=[])=>{
                         <Button style ={isApprovalsToggled === false ? orangeButtonStyle : blueButtonStyle} href="#" onClick={()=>{
                             handleApprovalsClick(); handleApprovalsToggle();}}><i class="fas fa-check"></i></Button>
                     </Card.Text>
-                    
                 </Card.Body>
             </Card>
-           
+           ))}
         </CardColumns>
     )
 
