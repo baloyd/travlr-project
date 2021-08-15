@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CardColumns, Card, Button } from 'react-bootstrap';
 
 const cardStyle = {
@@ -7,31 +7,76 @@ const cardStyle = {
     width: '24rem' 
 }
 
-const buttonStyle = {
+const orangeButtonStyle = {
     background: '#EF7E56',
     textColor: '#F9F9F9',
     border: 'none',
     borderRadius: '15px',
     margin: '10px',
 }
+const blueButtonStyle = {
+    background: '#305973',
+    textColor: '#F9F9F9',
+    border: 'none',
+    borderRadius: '15px',
+    margin: '10px',
+}
 
-const Resume=()=>{
+const Resume=(comments=[])=>{
+    // State Variables
+    const [likes, setLikes] = useState(0);
+    const [isLikesToggled, setIsLikesToggled] = useState(false);
+    const [approvals, setApprovals] = useState(0);
+    const [isApprovalsToggled, setIsApprovalsToggled] = useState(false);
+    
+    // Handles Likes 
+    const handleLikesToggle = () => {
+        setIsLikesToggled(!isLikesToggled);
+    }
+    const handleLikesClick = ()=>{
+        !isLikesToggled ? setLikes((likes + 1)) : setLikes((likes-1));
+       
+    }
+
+    // Handles Approvals
+    const handleApprovalsToggle = () => {
+        setIsApprovalsToggled(!isApprovalsToggled);
+    }
+    const handleApprovalsClick = () =>{
+        !isApprovalsToggled ? setApprovals((approvals + 1)) : setApprovals((approvals-1));
+    }    
+
     return(
         <CardColumns>
-            <Card style={cardStyle} text='#305973'>
+            <Card style={cardStyle} text='#305973' >
                 <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Subtitle className="mb-2">Card Subtitle</Card.Subtitle>
+                    <Card.Title>Username</Card.Title>
+                    <Card.Subtitle className="mb-2">Location Name, City</Card.Subtitle>
                     <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam turpis diam, sagittis sed tempor quis, rhoncus quis leo. Praesent ac magna massa. Quisque fringilla ullamcorper neque at sagittis. Etiam vitae fermentum erat. Vivamus tortor dui, tempus eu aliquet ut, gravida nec elit. Pellentesque eu neque neque. Donec non justo placerat, iaculis neque vitae, cursus diam. Curabitur fringilla quam eu ipsum congue eleifend. Praesent hendrerit metus eget mauris lacinia, sit amet rutrum turpis ultrices.
                     </Card.Text>
-                    <Button style={buttonStyle} href="#">Card Link</Button>
-                    <Button style ={buttonStyle} href="#">Another Link</Button>
+                    <Card.Text className='d-line align-items-center float-end'>
+                        <small className="text-muted">{likes} Likes</small>
+                        <Button style ={isLikesToggled === false ? orangeButtonStyle : blueButtonStyle}  href="#" onClick={()=>
+                            {handleLikesClick(); 
+                            handleLikesToggle();}}><i class="fas fa-heart"></i></Button>
+                        
+                        <small className="text-muted">{approvals} Approvals</small>
+                        <Button style ={isApprovalsToggled === false ? orangeButtonStyle : blueButtonStyle} href="#" onClick={()=>{
+                            handleApprovalsClick(); handleApprovalsToggle();}}><i class="fas fa-check"></i></Button>
+                    </Card.Text>
+                    
                 </Card.Body>
             </Card>
+           
         </CardColumns>
     )
 
 }
 
 export default Resume;
+
+//Username = User.username
+//Location Name = Location.location_name
+//City = City.cityName
+//Body = Post.post_body
