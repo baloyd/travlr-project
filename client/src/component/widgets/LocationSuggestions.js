@@ -33,7 +33,7 @@ const LocationSuggestions =({ states = [], cities = [] })=>{
 
     return (
         <Container fluid>
-            <Container className='container -sm container-md' style={locationStyle}>
+            <Container className='container-sm container-md' style={locationStyle}>
                 {/* State Div Buttons */}
                 <div className='py-3' style={textColor}>
                     

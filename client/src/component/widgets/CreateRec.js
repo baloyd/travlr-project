@@ -63,7 +63,7 @@ const CreateRec = ()=>{
             console.log(err)
         }
 
-        //Handles from validation
+        //Handles form validation
         const form = event.currentTarget
         if (form.checkValidity() === false) {
             event.preventDefault();
