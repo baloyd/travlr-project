@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { CardColumns, Card, Button } from 'react-bootstrap';
 
-// Card and Button Styles
+// Stylings
+const textColor = {
+    color: '#305973',
+    fontWeight: 'bold'
+}
 const cardStyle = {
     background: '#DED5C4',
     color: '#305973',
@@ -22,7 +26,12 @@ const blueButtonStyle = {
     margin: '10px',
 }
 
-const Resume=(comments=[])=>{
+const Recommended=({ comments=[] })=>{
+    console.log(comments);
+    if(!comments.length){
+        return <h3 className={textColor}>No Recommendations Yet! </h3>
+    }
+
     // State Variables
     const [likes, setLikes] = useState(0);
     const [isLikesToggled, setIsLikesToggled] = useState(false);
@@ -30,25 +39,23 @@ const Resume=(comments=[])=>{
     const [isApprovalsToggled, setIsApprovalsToggled] = useState(false);
     
     // Handles Likes 
-    const handleLikesToggle = () => {
-        setIsLikesToggled(!isLikesToggled);
-    }
+    const handleLikesToggle = () => setIsLikesToggled(!isLikesToggled);
+   
     const handleLikesClick = ()=>{
         !isLikesToggled ? setLikes((likes + 1)) : setLikes((likes-1));
        
     }
 
     // Handles Approvals
-    const handleApprovalsToggle = () => {
-        setIsApprovalsToggled(!isApprovalsToggled);
-    }
+    const handleApprovalsToggle = () => setIsApprovalsToggled(!isApprovalsToggled);
+    
     const handleApprovalsClick = () =>{
         !isApprovalsToggled ? setApprovals((approvals + 1)) : setApprovals((approvals-1));
     }    
 
     return(
         <CardColumns>
-            {comments.map((comment)=>(
+            {comments && comments.map((comment)=>(
             <Card style={cardStyle} text='#305973' >
                 <Card.Body>
                     <Card.Title>Username</Card.Title>
@@ -74,8 +81,9 @@ const Resume=(comments=[])=>{
 
 }
 
-export default Resume;
+export default Recommended;
 
+//Key  = Post._id?
 //Username = User.username
 //Location Name = Location.location_name
 //City = City.cityName
