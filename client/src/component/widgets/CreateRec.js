@@ -1,51 +1,169 @@
 import React, { useState } from  'react'
-import { Form, Row, Col, FloatingLabel, Button, Container } from 'react-bootstrap';
-// import { useMutation } from '@apollo/client';
+import { Form, Row, Col, Button, Container } from 'react-bootstrap';
+import { useMutation } from '@apollo/client';
 
+// Stylings
 const formStyle = {
     background: '#DED5C4',
     borderRadius: '15px'
 }
-
 const textColor = {
-    color: '#305973'
+    color: '#305973',
+    fontWeight: 'bold'
+}
+const orangeButtonStyle = {
+    background: '#EF7E56',
+    textColor: '#F9F9F9',
+    border: 'none',
+    borderRadius: '15px',
+    margin: '10px',
+}
+const blueButtonStyle = {
+    background: '#305973',
+    textColor: '#F9F9F9',
+    border: 'none',
+    borderRadius: '15px',
+    margin: '10px',
 }
 
 const CreateRec = ()=>{
+    const [validated, setValidated] = useState(false);
+    const [formState, setFormState] = useState({
+        recPlace: '',
+        city: '',
+        state: '',
+        type: '',
+        comment: ''
+    });
+
+    //Need to add graphql mutation name ---->ADD_FORM?
+    //Also inMemoryCache? ex.20.components.thoughForm
+    const [addForm, { error }] = useMutation()
+
+
+    //Handles form submission
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+
+        try {
+            const { data } = await addForm({
+                variables: {
+                    ...
+                    formState },
+            });
+
+            setFormState({
+                recPlace: '',
+                city: '',
+                state: '',
+                type: '',
+                comment: ''
+            })
+        } catch(err) {
+            console.log(err)
+        }
+
+        //Handles from validation
+        const form = event.currentTarget
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        setValidated(true);
+    };
+
+    //Handles changes to form
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+
+        if(name === 'recPlace') {
+            setFormState({...formState, [name]:value});
+        } else if (name !== 'recPlace') {
+            setFormState({...formState, [name]:value});
+        }
+    }
+
     return(
         <Container>
-            <Form className='p-3' style={formStyle}>
-                <FloatingLabel
-                    label="Name of Recommended Place"
-                    className="mb-3"
-                    style={textColor}
-                >
-                    <Form.Control type="text" placeholder="Name of Recommended Place" />
-                </FloatingLabel>
+            <Form noValidate validated={validated} onSubmit={handleSubmit} className='p-3' style={formStyle}>
+            
+                <Form.Group as={Col} className="mb-3">
+                    <Form.Label style={textColor}>Name of Recommended Place</Form.Label>
+                    <Form.Control
+                        required
+                        name='recPlace'
+                        value={formState.recPlace}
+                        onChange={handleChange}
+                        type="text"
+                        placeholder="Miami Beach"
+                    />
+                    <Form.Control.Feedback type="invalid">
+                            Please provide a valid place to recommend.
+                        </Form.Control.Feedback>
+                </Form.Group>
+
                 <Row className="g-2 mb-3">
-                    <Col md>
-                        <FloatingLabel label="City Name" style={textColor}>
-                        <Form.Control type="text" placeholder="City Name" />
-                        </FloatingLabel>
-                    </Col>
-                    <Col md>
-                        <FloatingLabel label="Select Type" style={textColor}>
-                            <Form.Select>
+                    <Form.Group as={Col}>
+                        <Form.Label style={textColor}>City</Form.Label>
+                        <Form.Control 
+                        name='city'
+                        value={formState.city}
+                        onChange={handleChange}
+                        type="text" placeholder="Miami" 
+                        required />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a valid city.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label style={textColor}>State</Form.Label>
+                        <Form.Control 
+                        name='state'
+                        value={formState.state}
+                        onChange={handleChange}
+                        type="text" placeholder="Florida" required />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a valid state.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} required>
+                        <Form.Label style={textColor}>Select Type</Form.Label>
+                        <Form.Control 
+                        required 
+                        name='type'
+                        value={formState.type}
+                        onChange={handleChange}
+                        as="select" 
+                        type="select">
+                                <option value="">Select an Option</option>
                                 <option value="Activity">Activity</option>
                                 <option value="Restaurant">Restaurant</option>
                                 <option value="Landmark">Landmark</option>
-                            </Form.Select>
-                        </FloatingLabel>
-                    </Col>
+                        </Form.Control>
+                        <Form.Control.Feedback type="invalid">
+                            Please choose a type.
+                        </Form.Control.Feedback>
+                    </Form.Group>
                 </Row>
+
                 <Form.Group>
-                    <FloatingLabel label="Comments about Recommended" style={textColor}>
+                    <Form.Label style={textColor}>Comments about Recommended</Form.Label>
                     <Form.Control
+                        required
+                        name='comment'
+                        value={formState.comment}
+                        onChange={handleChange}
                         as="textarea"
-                        placeholder="Leave a comment here"
+                        placeholder="Amazing beach, great restaurants, cool shops and overall great place to vacation! Will definitely be coming back!"
                         style={{ height: '100px' }}
                     />
-                    </FloatingLabel>
+                    <Form.Control.Feedback type="invalid">
+                            Please write a comment about your recommendation.
+                    </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className='d-flex justify-content-end'>
+                    <Button type="submit" style={validated === false ? orangeButtonStyle : blueButtonStyle}>Submit</Button>
                 </Form.Group>
             </Form>
         </Container>
@@ -53,3 +171,5 @@ const CreateRec = ()=>{
 }
 
 export default CreateRec;
+
+//Still have to set the correct mutation
