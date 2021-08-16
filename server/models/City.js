@@ -5,7 +5,7 @@ const citySchema = new Schema({
     cityName: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     regionId:
         { type: ObjectId, required: true },
