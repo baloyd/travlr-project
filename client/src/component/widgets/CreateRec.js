@@ -1,93 +1,175 @@
 import React, { useState } from  'react'
-import { Form, Button } from 'react-bootstrap';
+import { Form, Row, Col, Button, Container } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
 
+// Stylings
+const formStyle = {
+    background: '#DED5C4',
+    borderRadius: '15px'
+}
+const textColor = {
+    color: '#305973',
+    fontWeight: 'bold'
+}
+const orangeButtonStyle = {
+    background: '#EF7E56',
+    textColor: '#F9F9F9',
+    border: 'none',
+    borderRadius: '15px',
+    margin: '10px',
+}
+const blueButtonStyle = {
+    background: '#305973',
+    textColor: '#F9F9F9',
+    border: 'none',
+    borderRadius: '15px',
+    margin: '10px',
+}
 
 const CreateRec = ()=>{
-    const [userCreateRec, setUserCreatRec] = useState({nameOfRec:'',nameOfActivity:'', location:'', comment:''})
     const [validated, setValidated] = useState(false);
+    const [formState, setFormState] = useState({
+        recPlace: '',
+        city: '',
+        state: '',
+        type: '',
+        comment: ''
+    });
 
-    const[addRec, { error }]=useMutation(ADD_REC);
+    //Need to add graphql mutation name ---->ADD_FORM?
+    //Also inMemoryCache? ex.20.components.thoughForm
+    const [addForm, { error }] = useMutation()
 
-    const handleInputChange = (e)=>{
-        const {name, value}= e.target;
-        setUserCreatRec({...userCreateRec,[name]:value});
-    }
 
-    const handleFormSubmit = async (e)=>{
-        e.preventDefault();
+    //Handles form submission
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-        const form = e.currentTarget;
-            if (form.checkValidity() === false) {
-            e.preventDefault();
-            e.stopPropagation();
+        try {
+            const { data } = await addForm({
+                variables: {
+                    ...
+                    formState },
+            });
+
+            setFormState({
+                recPlace: '',
+                city: '',
+                state: '',
+                type: '',
+                comment: ''
+            })
+        } catch(err) {
+            console.log(err)
         }
 
+        //Handles form validation
+        const form = event.currentTarget
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
         setValidated(true);
-
-        try{
-            const { data } = await addRec({
-                variables: {...userCreateRec}
-            });
-
-            setUserCreatRec({
-                nameOfActivity:'', 
-                location:'', 
-                comment:''   
-            });
-        } catch (err) {
-            console.log(err);
-        }
     };
 
-    return (
-        <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-            <Row className="g-2">
-                <Col md>
-                    <FloatingLabel controlId="floatingInputGrid" label="City">
-                        <Form.Control type="text" placeholder="City"
-                        onChange={handleInputChange}
-                        value={userCreateRec.location} />
-                    </FloatingLabel>
-                </Col>
-                <Col md>
-                    <FloatingLabel controlId="floatingSelectGrid" label="Works with selects">
-                        <Form.Select aria-label="Floating label select example">
-                            <option>Select Activity, Food, or Landmark</option>
-                            <option value="1">Activity</option>
-                            <option value="2">Food</option>
-                             <option value="3">Landmark</option>
-                        </Form.Select>
-                    </FloatingLabel>
-                </Col>
-            </Row>
-            <Form.Group className="mb-3">
-                <Form.Label>Enter Name of Recommended Activity, Restaurant or Landmark</Form.Label>
-                <Form.Control 
-                    type="text" placeholder="Enter the name of activity, restaurant or landmark" 
-                    onChange={handleInputChange}
-                    value={userCreateRec.nameOfRec}/>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <FloatingLabel controlId="floatingTextarea2" label="Comments">
-                <Form.Control
-                    as="textarea"
-                    placeholder="Leave a comment here"
-                    onChange={handleInputChange}
-                    value={userCreateRec.comment}
-                    style={{ height: '100px' }}
-                />
-                </FloatingLabel>
-            </Form.Group>
-            <Button
-                disabled={!(userCreatRec.nameOfRec && userCreateRec.nameOfActivity && userCreateRec.location && userCreateRec.comment)}
-                type='submit'
-                variant='success'>
-                    Submit
-            </Button>
-        </Form>
-    )
+    //Handles changes to form
+    const handleChange = (event) => {
+        const { name, value } = event.target;
 
+        if(name === 'recPlace') {
+            setFormState({...formState, [name]:value});
+        } else if (name !== 'recPlace') {
+            setFormState({...formState, [name]:value});
+        }
+    }
+
+    return(
+        <Container>
+            <Form noValidate validated={validated} onSubmit={handleSubmit} className='p-3' style={formStyle}>
+            
+                <Form.Group as={Col} className="mb-3">
+                    <Form.Label style={textColor}>Name of Recommended Place</Form.Label>
+                    <Form.Control
+                        required
+                        name='recPlace'
+                        value={formState.recPlace}
+                        onChange={handleChange}
+                        type="text"
+                        placeholder="Miami Beach"
+                    />
+                    <Form.Control.Feedback type="invalid">
+                            Please provide a valid place to recommend.
+                        </Form.Control.Feedback>
+                </Form.Group>
+
+                <Row className="g-2 mb-3">
+                    <Form.Group as={Col}>
+                        <Form.Label style={textColor}>City</Form.Label>
+                        <Form.Control 
+                        name='city'
+                        value={formState.city}
+                        onChange={handleChange}
+                        type="text" placeholder="Miami" 
+                        required />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a valid city.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                        <Form.Label style={textColor}>State</Form.Label>
+                        <Form.Control 
+                        name='state'
+                        value={formState.state}
+                        onChange={handleChange}
+                        type="text" placeholder="Florida" required />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a valid state.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group as={Col} required>
+                        <Form.Label style={textColor}>Select Type</Form.Label>
+                        <Form.Control 
+                        required 
+                        name='type'
+                        value={formState.type}
+                        onChange={handleChange}
+                        as="select" 
+                        type="select">
+                                <option value="">Select an Option</option>
+                                <option value="Activity">Activity</option>
+                                <option value="Restaurant">Restaurant</option>
+                                <option value="Landmark">Landmark</option>
+                        </Form.Control>
+                        <Form.Control.Feedback type="invalid">
+                            Please choose a type.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                </Row>
+
+                <Form.Group>
+                    <Form.Label style={textColor}>Comments about Recommended</Form.Label>
+                    <Form.Control
+                        required
+                        name='comment'
+                        value={formState.comment}
+                        onChange={handleChange}
+                        as="textarea"
+                        placeholder="Amazing beach, great restaurants, cool shops and overall great place to vacation! Will definitely be coming back!"
+                        style={{ height: '100px' }}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                            Please write a comment about your recommendation.
+                    </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className='d-flex justify-content-end'>
+                    <Button type="submit" style={validated === false ? orangeButtonStyle : blueButtonStyle}>Submit</Button>
+                </Form.Group>
+            </Form>
+        </Container>
+    )
 }
 
 export default CreateRec;
+
+//Still have to set the correct mutation
