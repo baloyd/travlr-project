@@ -1,9 +1,9 @@
 const { gql } = require('apollo-server-express');
 
-const typeDefs = gql `
+const typeDefs = gql`
 
     type Query {
-        category: [Cata]
+        category(_id: ID!): Cata
         city: [City]
         location: [Location]
         post: [Post]
