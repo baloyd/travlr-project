@@ -3,9 +3,6 @@ const { Cata, City, Location, Post, Region, State, User } = require('../models')
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
-    //login: (parent, args, context, info) => {
-    //
-    // }
     Query: {
         city: async (parent) => {
             const cityName = await City.find({})
@@ -28,12 +25,10 @@ const resolvers = {
             return location;
         },
 
-        addPost: async () => {
+        addPost: async (parent, {title, body}) => {
+            const post = await Post.create({title, body});
 
-        },
-
-        addCategory: async () => {
-
+            return post;
         },
 
         addRegion: async () => {

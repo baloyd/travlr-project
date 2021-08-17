@@ -72,11 +72,6 @@ const typeDefs = gql`
         addUser(username: String! email: String! password: String!): Auth
         addLocation: Location
         addPost: Post
-        addCategory: Cata
-        addRegion: Region
-        addState: State
-        addCity: City
-
     }
 `;
 
