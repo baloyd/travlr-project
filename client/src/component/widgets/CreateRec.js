@@ -1,6 +1,7 @@
 import React, { useState } from  'react'
 import { Form, Row, Col, Button, Container } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
+import Modal from './Modal';
 
 // Stylings
 const formStyle = {
