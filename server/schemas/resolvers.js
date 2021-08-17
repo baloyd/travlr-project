@@ -4,23 +4,26 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     //login: (parent, args, context, info) => {
-        //
+    //
     // }
     Query: {
-        
+        city: async (parent) => {
+            const cityName = await City.find({})
+            return cityName
+        }
     },
 
     Mutation: {
         //creating a user that requires some parameters, signs a token and sends it back to the client
-        addUser: async (parent, {name, email, password}) => {
-            const user = await User.create({name, email, password});
+        addUser: async (parent, { name, email, password }) => {
+            const user = await User.create({ name, email, password });
             const token = signToken(user);
 
-            return{ token, user };
+            return { token, user };
         },
-        
-        addLocation: async (parent, {name, address}) => {
-            const location = await Location.create({name, address});
+
+        addLocation: async (parent, { name, address }) => {
+            const location = await Location.create({ name, address });
 
             return location;
         },
@@ -42,19 +45,19 @@ const resolvers = {
         addCity: async () => {
 
         },
-    
+
         //create the login
-        login: async (parent, {email, password}) => {
+        login: async (parent, { email, password }) => {
             //create a user variable that looks for an email
-            const user = await User.findOne({email});
+            const user = await User.findOne({ email });
             //if no user with that email is found throw the user an error message
-            if(!user) {
+            if (!user) {
                 throw new AuthenticationError('No user with this email and password was found! Try again!');
             }
             //create a variable that will store the passwod and run the isCorrectPassword method
             const correctPw = await user.isCorrectPassword(password);
             //if there the pw did not match throw the user an error message
-            if(!correctPw) {
+            if (!correctPw) {
                 throw new AuthenticationError('No user with this email and password was found! Try again!')
             }
             // create a variable that will store the token and hand it off to the server if we found a user
