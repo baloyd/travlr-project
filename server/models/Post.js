@@ -15,14 +15,11 @@ const postSchema = new Schema({
     authorId:
         { type: ObjectId, required: true },
     favorites:
-        { type: Number, required: true },
+        { type: Number },
     cityId:
         { type: ObjectId, required: true },
     cataId:
-        { type: ObjectId, required: true },
-    tags: [
-        { type: String, required: true },
-    ]
+        { type: ObjectId, required: true }
 })
 
 const Post = model('Post', postSchema);

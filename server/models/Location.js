@@ -7,7 +7,7 @@ const locationSchema = new Schema({
         required: true,
         unique: true
     },
-    // is this correct or will they all need to be an object?
+
     location_Address: {
         street: String,
         city: String,
@@ -15,14 +15,11 @@ const locationSchema = new Schema({
         zip: Number,
     },
     favorites:
-        { type: Number, required: true },
+        { type: Number },
     cityId:
         { type: ObjectId, required: true },
     cataId:
-        { type: ObjectId, required: true },
-    tags: [
-        { type: String, required: true },
-    ]
+        { type: ObjectId, required: true }
 })
 
 const Location = model('Location', locationSchema);
