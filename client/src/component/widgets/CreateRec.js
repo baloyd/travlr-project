@@ -40,7 +40,7 @@ const CreateRec = ()=>{
 
     //Need to add graphql mutation name ---->ADD_FORM?
     //Also inMemoryCache? ex.20.components.thoughForm
-    // const [addForm, { error }] = useMutation()
+    const [addForm, { error }] = useMutation()
 
 
     //Handles form submission
