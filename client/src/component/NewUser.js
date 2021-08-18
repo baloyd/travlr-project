@@ -4,7 +4,31 @@ import { useMutation } from '@apollo/client';
 import { ADD_USER} from '../utils/mutations';
 import Auth from '../utils/auth';
 
-const Signup = () => {
+// Stylings
+const formStyle = {
+  background: '#DED5C4',
+  borderRadius: '15px'
+}
+const textColor = {
+  color: '#305973',
+  fontWeight: 'bold'
+}
+const orangeButtonStyle = {
+  background: '#EF7E56',
+  textColor: '#F9F9F9',
+  border: 'none',
+  borderRadius: '15px',
+  margin: '10px',
+}
+const blueButtonStyle = {
+  background: '#305973',
+  textColor: '#F9F9F9',
+  border: 'none',
+  borderRadius: '15px',
+  margin: '10px',
+}
+
+const NewUser = () => {
   // set initial form state
   const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
   // set state for form validation
@@ -56,14 +80,14 @@ console.log(response)
   return (
     <>
       {/* This is needed for the validation functionality above */}
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit} className='p-3' style={formStyle}>
         {/* show alert if server response is bad */}
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your signup!
         </Alert>
 
         <Form.Group>
-          <Form.Label htmlFor='username'>Username</Form.Label>
+          <Form.Label style={textColor} htmlFor='username'>Username</Form.Label>
           <Form.Control
             type='text'
             placeholder='Your username'
@@ -76,7 +100,7 @@ console.log(response)
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
+          <Form.Label style={textColor} htmlFor='email'>Email</Form.Label>
           <Form.Control
             type='email'
             placeholder='Your email address'
@@ -89,7 +113,7 @@ console.log(response)
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
+          <Form.Label style={textColor} htmlFor='password'>Password</Form.Label>
           <Form.Control
             type='password'
             placeholder='Your password'
@@ -103,7 +127,7 @@ console.log(response)
         <Button
           disabled={!(userFormData.username && userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
+          style={validated === false ? orangeButtonStyle : blueButtonStyle}>
           Submit
         </Button>
       </Form>
@@ -111,4 +135,4 @@ console.log(response)
   );
 };
 
-export default Signup;
+export default NewUser;

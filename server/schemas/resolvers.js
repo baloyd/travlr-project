@@ -54,7 +54,7 @@ const resolvers = {
             if (!user) {
                 throw new AuthenticationError('No user with this email and password was found! Try again!');
             }
-            //create a variable that will store the passwod and run the isCorrectPassword method
+            //create a variable that will store the password and run the isCorrectPassword method
             const correctPw = await user.isCorrectPassword(password);
             //if there the pw did not match throw the user an error message
             if (!correctPw) {
