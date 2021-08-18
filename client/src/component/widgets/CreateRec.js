@@ -41,32 +41,12 @@ const CreateRec = ()=>{
 
     //Need to add graphql mutation name ---->ADD_FORM?
     //Also inMemoryCache? ex.20.components.thoughForm
-    const [addForm, { error }] = useMutation()
+    const [addPost, { error }] = useMutation()
 
 
     //Handles form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        try {
-            const { data } = await addForm({
-                variables: {
-                    ...
-                    formState },
-            });
-
-            setFormState({
-                recPlace: '',
-                street: '',
-                city: '',
-                state: '',
-                zip: '',
-                category: '',
-                comment: ''
-            })
-        } catch(err) {
-            console.log(err)
-        }
 
         //Handles form validation
         const form = event.currentTarget
@@ -75,18 +55,38 @@ const CreateRec = ()=>{
             event.stopPropagation();
         }
         setValidated(true);
+
+        try {
+            const { data } = await addPost({
+                variables: {
+                    ...
+                    formState },
+            });
+
+            console.log(data);
+
+        } catch(err) {
+            console.log(err)
+        }
+
+        setFormState({
+            recPlace: '',
+            street: '',
+            city: '',
+            state: '',
+            zip: '',
+            category: '',
+            comment: ''
+        })
+
     };
 
     // Handles changes to form
     const handleChange = (event) => {
         const { name, value } = event.target;
-
-        if(name === 'recPlace') {
-            setFormState({...formState, [name]:value});
-        } else if (name !== 'recPlace') {
-            setFormState({...formState, [name]:value});
-        }
+        setFormState({...formState, [name]: value});
     }
+    
 
     return(
         <Container>

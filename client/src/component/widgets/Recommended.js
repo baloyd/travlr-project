@@ -56,7 +56,7 @@ const Recommended=({ comments=[] })=>{
     return(
         <CardColumns>
             {comments && comments.map((comment)=>(
-            <Card style={cardStyle} text='#305973' >
+            <Card style={cardStyle} text='#305973'>
                 <Card.Body>
                     <Card.Title>Username</Card.Title>
                     <Card.Subtitle className="mb-2">Location Name, City</Card.Subtitle>
