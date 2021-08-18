@@ -17,61 +17,57 @@ const typeDefs = gql`
         user: User
     }
 
-    type Cata {
-        cataName: String!
-    }
+    # type Cata {
+    #     _id: ID!
+    #     cataName: String!
+    # }
 
-    type City {
-        _id: ID!
-        cityName: String!
-        regionId: [Region]!
-        stateId: [State]!
-        # cityCats: 
-    }
+    # type City {
+    #     _id: ID!
+    #     cityName: String!
+    #     regionId: ID!
+    #     stateId: ID!
+    # }
 
     type Location {
         _id: ID!
         location_name: String!
-        location_Address: String!
+        location_address: String!
         favorites: Int!
-        cityId: [City]!
-        cataId: [Cata]!
-        tags: String!
+        city_name: String!
+        cata: String!
+        # tags: [String]!
     }
 
     type Post {
-        post_title: String!
         post_body: String!
-        authorId: [User]!
-        favorites: Int!
-        cityId: [City]!
-        cataId: [Cata]!
-        tags: String!
+        author: String!
+        favorites: Int
     }
 
-    type Region {
-        regionName: String!
-        # regionStates:
-    }
+    # type Region {
+    #     regionName: String!
+    #     regionStates: [ID]
+    # }
 
-    type State {
-        stateName: String!
-        regionId: [Region]!
-        # stateCities:
-    }
+    # type State {
+    #     stateName: String!
+    #     regionId: ID!
+    #     stateCities: [ID]
+    # }
 
     type User {
         _id: ID!
         username: String!
         email: String!
-        post: [Post]
+        post: [ID]
     }   
 
     type Mutation {
         login(email: String! password: String!): Auth
         addUser(username: String! email: String! password: String!): Auth
-        addLocation: Location
-        addPost: Post
+        addLocation(location_name: String!, location_address: String!): Location
+        addPost(post_body: String!): Post
         addCategory: Cata
         addRegion: Region
         addState: State
