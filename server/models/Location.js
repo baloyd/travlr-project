@@ -8,7 +8,7 @@ const locationSchema = new Schema({
         unique: true
     },
 
-    location_Address: {
+    location_address: {
         street: String,
         city: String,
         state: String,
@@ -16,10 +16,10 @@ const locationSchema = new Schema({
     },
     favorites:
         { type: Number },
-    cityId:
-        { type: ObjectId, required: true },
-    cataId:
-        { type: ObjectId, required: true }
+    city_name:
+        { type: String, required: true },
+    cata:
+        [{ type: String, required: true }]
 })
 
 const Location = model('Location', locationSchema);

@@ -2,24 +2,15 @@ const { ObjectId } = require('mongodb')
 const { Schema, model } = require('mongoose');
 
 const postSchema = new Schema({
-    post_title: {
-        type: String,
-        required: true,
-        unique: true
-    },
     post_body: {
         type: String,
         required: true,
         unique: true
     },
-    authorId:
-        { type: ObjectId, required: true },
+    author:
+        { type: String, required: true },
     favorites:
-        { type: Number },
-    cityId:
-        { type: ObjectId, required: true },
-    cataId:
-        { type: ObjectId, required: true }
+        { type: Number }
 })
 
 const Post = model('Post', postSchema);
