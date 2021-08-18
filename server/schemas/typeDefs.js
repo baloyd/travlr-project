@@ -40,7 +40,7 @@ const typeDefs = gql`
     }
 
     type Post {
-        post_title: String!
+        # post_title: String!
         post_body: String!
         authorId: [User]!
         favorites: Int!
