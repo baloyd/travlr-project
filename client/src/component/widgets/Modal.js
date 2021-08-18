@@ -25,11 +25,13 @@ const blueButtonStyle = {
     margin: '10px',
 }
 
+
+
 const Modal = ({ recPlace, username, category, street, city, state, zip, comment }) =>{
-    const [show, setShow] = useState(false);
+    // const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
 
     const [likes, setLikes] = useState(0);
     const [isLikesToggled, setIsLikesToggled] = useState(false);
@@ -42,30 +44,29 @@ const Modal = ({ recPlace, username, category, street, city, state, zip, comment
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            {/* <Button variant="primary" onClick={handleShow}>
                 Launch static backdrop modal
-            </Button>
-        <Modal 
-            size='xl'
-            show={show}
-            onHide={handleClose}
-            backdrop='static'
-            keyboard={false}
-        >
-            <Modal.Header closeButton style={headerFooterStyles}>
-                <Modal.Title>{recPlace}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body style={bodyStyles}>
-                <Row className='m-0'>
-                    <Col>
-                    <p className='row mb-1 m-0'>Recommended by: {username}</p>
-                    <p className='row mb-1 m-0'>Category: {category}</p>
-                    </Col>
-                    <Col>
-                    <p className='mb-1'>Address:</p>
-                    <p className=''>{`${street} ${city}, ${state}, ${zip}`}</p>
-                    </Col>
-                    
+            </Button> */}
+            <Modal 
+                size='xl'
+                show={show}
+                onHide={handleClose}
+                backdrop='static'
+                keyboard={false}
+            >
+                <Modal.Header closeButton style={headerFooterStyles}>
+                    <Modal.Title>{recPlace}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body style={bodyStyles}>
+                    <Row className='m-0'>
+                        <Col>
+                            <p className='row mb-1 m-0'>Recommended by: {username}</p>
+                            <p className='row mb-1 m-0'>Category: {category}</p>
+                        </Col>
+                        <Col>
+                            <p className='mb-1'>Address:</p>
+                            <p className=''>{`${street} ${city}, ${state}, ${zip}`}</p>
+                        </Col>
                 </Row>
                 
                 
@@ -76,14 +77,14 @@ const Modal = ({ recPlace, username, category, street, city, state, zip, comment
 
                 <p>{comment}</p>
             
-            </Modal.Body>
-            <Modal.Footer style={headerFooterStyles}>
-                <small className="text-white">{likes} Likes</small>
+                </Modal.Body>
+                <Modal.Footer style={headerFooterStyles}>
+                    <small className="text-white">{likes} Likes</small>
                         <Button style ={isLikesToggled === false ? orangeButtonStyle : blueButtonStyle}  href="#" onClick={()=>
                             {handleLikesClick(); 
                             handleLikesToggle();}}><i class="fas fa-heart"></i></Button>
-            </Modal.Footer>
-        </Modal>
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }

@@ -70,7 +70,7 @@ console.log(response)
             name='username'
             onChange={handleInputChange}
             value={userFormData.username}
-            required
+            required 
           />
           <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
         </Form.Group>

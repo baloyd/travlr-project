@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Modal from './Modal';
 import { CardColumns, Card, Button } from 'react-bootstrap';
 
 // Stylings
@@ -30,7 +31,12 @@ const Recommended=({ comments=[] })=>{
     console.log(comments);
     if(!comments.length){
         return <h3 className={textColor}>No Recommendations Yet! </h3>
-    }
+    }   
+
+    //State variables for Modal
+    const [show, setShow] = useState(false);
+
+    const handleShow = () => setShow(true);
 
     // State Variables
     const [likes, setLikes] = useState(0);
@@ -56,8 +62,8 @@ const Recommended=({ comments=[] })=>{
     return(
         <CardColumns>
             {comments && comments.map((comment)=>(
-            <Card style={cardStyle} text='#305973'>
-                <Card.Body>
+            <Card onClick={handleShow} style={cardStyle} text='#305973'>
+                <Card.Body>s
                     <Card.Title>Username</Card.Title>
                     <Card.Subtitle className="mb-2">Location Name, City</Card.Subtitle>
                     <Card.Text>
