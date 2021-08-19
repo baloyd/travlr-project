@@ -24,24 +24,6 @@ const resolvers = {
             return location;
         },
 
-        addPost: async () => {
-
-        },
-
-        addCategory: async () => {
-
-        },
-
-        addRegion: async () => {
-
-        },
-        addState: async () => {
-
-        },
-        addCity: async () => {
-
-        },
-
         //create the login
         login: async (parent, { email, password }) => {
             //create a user variable that looks for an email
