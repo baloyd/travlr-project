@@ -3,12 +3,8 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 
     type Query {
-        category(_id: ID!): Cata
-        city: [City]
         location: [Location]
         post: [Post]
-        region: [Region]
-        state: [State]
         user: [User]
     }
 
@@ -68,10 +64,6 @@ const typeDefs = gql`
         addUser(username: String! email: String! password: String!): Auth
         addLocation(location_name: String!, location_address: String!): Location
         addPost(post_body: String!): Post
-        addCategory: Cata
-        addRegion: Region
-        addState: State
-        addCity: City
 
     }
 `;

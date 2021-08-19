@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Cata, City, Location, Post, Region, State, User } = require('../models');
+const { Location, Post, User } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -7,10 +7,6 @@ const resolvers = {
     //
     // }
     Query: {
-        city: async (parent) => {
-            const cityName = await City.find({})
-            return cityName
-        }
     },
 
     Mutation: {
