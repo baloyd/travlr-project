@@ -1,20 +1,15 @@
-import {  Container,Row, Col, Button } from 'react-bootstrap';
-// import Auth from '../utils/auth';
-import Login from '../Login'
-import Signup from '../Signup'
+import {  Container,Row, Col, } from 'react-bootstrap';
+
+import CreateRec from '../widgets/CreateRec'
+
 
 const Homepage = ()=>{
 return (
 <div>
 
-<Container>
-  <Row>
-    <Col>Travlr</Col>
-  </Row>
-</Container>
+<CreateRec />
 
-<Button><Login /></Button>
-<Button><Signup /></Button>
+
 </div>
 )
 }
