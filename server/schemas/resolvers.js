@@ -6,7 +6,7 @@ const resolvers = {
     Query: {
 
     },
-    
+
     Mutation: {
         //creating a user that requires some parameters, signs a token and sends it back to the client
         addUser: async (parent, { username, email, password }) => {
@@ -22,9 +22,9 @@ const resolvers = {
             return location;
         },
 
-        addPost: async (parent, {title, body}) => {
-            const post = await Post.create({title, body});
-
+        addPost: async (parent, { postData }) => {
+            const post = await Post.create({ postData });
+            
             return post;
         },
 
