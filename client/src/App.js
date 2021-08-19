@@ -10,11 +10,9 @@ import background from '../src/images/background.jpg';
 import Footer from './component/Footer';
 
 const sectionStyle = {
-width: "120%",
-height: "100%",
-backgroundImage: `url(${background})`,
-backgroundSize: "cover",
-margin: '0'
+  backgroundImage: `url(${background})`,
+  backgroundSize: "cover",
+  margin: '0'
 }
 
 const client = new ApolloClient({
@@ -38,11 +36,11 @@ const client = new ApolloClient({
           <>
           <NavBar />
           <Switch>
-            <Container style={sectionStyle}>
+            <div className='bg-image' style={sectionStyle}>
               <Route exact path='/' component={SignupPage} />
               <Route exact path='/LocationPage' component={LocationPage} />
               <Route exact path='/HomePage' component={Homepage} />
-            </Container>
+            </div>
               <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
             
           </Switch>

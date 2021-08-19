@@ -5,7 +5,6 @@ import { Container, Button } from 'react-bootstrap';
 const locationStyle = {
     background: '#DED5C4',
     borderRadius: '15px',
-    width:'45rem'
 }
 const textColor = {
     color: '#305973',
@@ -34,7 +33,7 @@ const LocationSuggestions =({ states = [], cities = [] })=>{
 
     return (
         <Container fluid>
-            <Container className='container-sm container-md' style={locationStyle}>
+            <Container className='col-md-6' style={locationStyle}>
                 {/* State Div Buttons */}
                 <div className='py-3' style={textColor}>
                     

@@ -7,7 +7,8 @@ import Modal from './Modal';
 const formStyle = {
     background: '#DED5C4',
     borderRadius: '15px',
-    width:'45rem'
+    marginLeft:'auto',
+    marginRight: 'auto'
 }
 const textColor = {
     color: '#305973',
@@ -90,8 +91,8 @@ const CreateRec = ()=>{
     
 
     return(
-        <Container>
-            <Form noValidate validated={validated} onSubmit={handleSubmit} className='p-3' style={formStyle}>
+        <Container className='col-md-6'>
+            <Form noValidate validated={validated} onSubmit={handleSubmit} className='p-3 mb-3' style={formStyle}>
             
                 <Form.Group as={Col} className="mb-3">
                     <Form.Label style={textColor}>Name of Recommended Place</Form.Label>
@@ -139,20 +140,17 @@ const CreateRec = ()=>{
                 </Row>
 
                 <Row className="g-2 mb-3">
-                    <Form.Group as={Col} required>
-                        <Form.Label style={textColor}>Select State</Form.Label>
+                    <Form.Group as={Col}>
+                        <Form.Label style={textColor}>State</Form.Label>
                         <Form.Control 
-                            required 
-                            name='type'
+                            name='state'
                             // value={formState.state}
                             // onChange={handleChange}
-                            as="select" 
-                            type="select">
-                                <option value="">Select State</option>
-                                <option value="Activity">Florida</option>
-                        </Form.Control>
+                            type="text" 
+                            placeholder="FL" 
+                            required />
                         <Form.Control.Feedback type="invalid">
-                            Please choose a state.
+                            Please provide a valid state.
                         </Form.Control.Feedback>
                     </Form.Group>
 
