@@ -3,8 +3,17 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
 
     type Query {
+<<<<<<< Updated upstream
         location: [Location]
         post: [Post]
+=======
+        # category(_id: ID!): Cata
+        # city: [City]
+        location: [Location]
+        post: [Post]
+        # region: [Region]
+        # state: [State]
+>>>>>>> Stashed changes
         user: [User]
     }
 

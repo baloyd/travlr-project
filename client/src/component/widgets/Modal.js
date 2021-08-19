@@ -27,11 +27,11 @@ const blueButtonStyle = {
 
 
 
-const Modal = ({ recPlace, username, category, street, city, state, zip, comment }) =>{
-    // const [show, setShow] = useState(false);
+const ModalPost = ({ recPlace, username, category, street, city, state, zip, comment }) =>{
+    const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
+    const handleShow = () => setShow(true);
 
     const [likes, setLikes] = useState(0);
     const [isLikesToggled, setIsLikesToggled] = useState(false);
@@ -89,5 +89,5 @@ const Modal = ({ recPlace, username, category, street, city, state, zip, comment
     )
 }
 
-export default Modal;
+export default ModalPost;
 
