@@ -5,6 +5,7 @@ import { Container, Button } from 'react-bootstrap';
 const locationStyle = {
     background: '#DED5C4',
     borderRadius: '15px',
+    width:'45rem'
 }
 const textColor = {
     color: '#305973',
