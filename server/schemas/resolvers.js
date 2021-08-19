@@ -3,16 +3,10 @@ const { Cata, City, Location, Post, Region, State, User } = require('../models')
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
-    //login: (parent, args, context, info) => {
-    //
-    // }
     Query: {
-        city: async (parent) => {
-            const cityName = await City.find({})
-            return cityName
-        }
-    },
 
+    },
+    
     Mutation: {
         //creating a user that requires some parameters, signs a token and sends it back to the client
         addUser: async (parent, { username, email, password }) => {
@@ -28,22 +22,10 @@ const resolvers = {
             return location;
         },
 
-        addPost: async () => {
+        addPost: async (parent, {title, body}) => {
+            const post = await Post.create({title, body});
 
-        },
-
-        addCategory: async () => {
-
-        },
-
-        addRegion: async () => {
-
-        },
-        addState: async () => {
-
-        },
-        addCity: async () => {
-
+            return post;
         },
 
         //create the login
