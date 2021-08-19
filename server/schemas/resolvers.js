@@ -4,12 +4,9 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        city: async (parent) => {
-            const cityName = await City.find({})
-            return cityName
-        }
-    },
 
+    },
+    
     Mutation: {
         //creating a user that requires some parameters, signs a token and sends it back to the client
         addUser: async (parent, { username, email, password }) => {

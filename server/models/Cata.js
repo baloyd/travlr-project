@@ -1,13 +1,13 @@
-const { Schema, model } = require('mongoose');
+// const { Schema, model } = require('mongoose');
 
-const cataSchema = new Schema({
-    cataName: {
-        type: String,
-        required: true,
-        unique: true
-    }
-})
+// const cataSchema = new Schema({
+//     cataName: {
+//         type: String,
+//         required: true,
+//         unique: true
+//     }
+// })
 
-const Cata = model('Cata', cataSchema);
+// const Cata = model('Cata', cataSchema);
 
-module.exports = Cata;
+// module.exports = Cata;
