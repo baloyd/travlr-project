@@ -9,11 +9,7 @@ import SignupPage from './component/pages/SignupPage';
 import background from '../src/images/background.jpg';
 import Footer from './component/Footer';
 
-const sectionStyle = {
-  backgroundImage: `url(${background})`,
-  backgroundSize: "cover",
-  margin: '0'
-}
+
 
 const client = new ApolloClient({
     request: (operation) => {
@@ -30,6 +26,11 @@ const client = new ApolloClient({
   });
 
   function App() {
+    const sectionStyle = {
+      backgroundImage: `url(${background})`,
+      backgroundSize: "cover",
+      margin: '0'
+    } 
     return (
       <ApolloProvider client={client}>
         <Router>
