@@ -6,7 +6,8 @@ import Modal from './Modal';
 // Stylings
 const formStyle = {
     background: '#DED5C4',
-    borderRadius: '15px'
+    borderRadius: '15px',
+    width:'45rem'
 }
 const textColor = {
     color: '#305973',
@@ -41,7 +42,7 @@ const CreateRec = ()=>{
 
     //Need to add graphql mutation name ---->ADD_FORM?
     //Also inMemoryCache? ex.20.components.thoughForm
-    const [addPost, { error }] = useMutation();
+    // const [addPost, { error }] = useMutation();
 
 
     //Handles form submission
@@ -56,18 +57,18 @@ const CreateRec = ()=>{
         }
         setValidated(true);
 
-        try {
-            const { data } = await addPost({
-                variables: {
-                    ...
-                    formState },
-            });
+        // try {
+        //     const { data } = await addPost({
+        //         variables: {
+        //             ...
+        //             formState },
+        //     });
 
-            console.log(data);
+        //     console.log(data);
 
-        } catch(err) {
-            console.log(err)
-        }
+        // } catch(err) {
+        //     console.log(err)
+        // }
 
         setFormState({
             recPlace: '',
@@ -97,8 +98,8 @@ const CreateRec = ()=>{
                     <Form.Control
                         required
                         name='recPlace'
-                        value={formState.recPlace}
-                        onChange={handleChange}
+                        // value={formState.recPlace}
+                        // onChange={handleChange}
                         type="text"
                         placeholder="Miami Beach"
                     />
@@ -113,8 +114,8 @@ const CreateRec = ()=>{
                         <Form.Control
                         required
                         name='street'
-                        value={formState.street}
-                        onChange={handleChange}
+                        // value={formState.street}
+                        // onChange={handleChange}
                         type="text"
                         placeholder="1001 Ocean Dr"
                         />
@@ -127,8 +128,8 @@ const CreateRec = ()=>{
                         <Form.Label style={textColor}>City</Form.Label>
                         <Form.Control 
                         name='city'
-                        value={formState.city}
-                        onChange={handleChange}
+                        // value={formState.city}
+                        // onChange={handleChange}
                         type="text" placeholder="Miami" 
                         required />
                         <Form.Control.Feedback type="invalid">
@@ -143,8 +144,8 @@ const CreateRec = ()=>{
                         <Form.Control 
                             required 
                             name='type'
-                            value={formState.state}
-                            onChange={handleChange}
+                            // value={formState.state}
+                            // onChange={handleChange}
                             as="select" 
                             type="select">
                                 <option value="">Select State</option>
@@ -159,8 +160,8 @@ const CreateRec = ()=>{
                         <Form.Label style={textColor}>Zip Code</Form.Label>
                         <Form.Control 
                             name='zip'
-                            value={formState.zip}
-                            onChange={handleChange}
+                            // value={formState.zip}
+                            // onChange={handleChange}
                             type="text" 
                             placeholder="33139" 
                             required />

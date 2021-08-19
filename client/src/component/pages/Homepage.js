@@ -1,17 +1,16 @@
-import {  Container,Row, Col, } from 'react-bootstrap';
-
-import CreateRec from '../widgets/CreateRec'
+import React from 'react';
+import {  Container } from 'react-bootstrap';
+import CreateRec from '../widgets/CreateRec';
+import LocationSuggestions from '../widgets/LocationSuggestions';
 
 
 const Homepage = ()=>{
-return (
-<div>
-
-<CreateRec />
-
-
-</div>
-)
+    return (
+        <Container>
+            <CreateRec />
+            <LocationSuggestions />
+        </Container>
+    )
 }
 
 export default Homepage;
