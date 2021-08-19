@@ -4,6 +4,31 @@ import { useMutation} from '@apollo/client';
 import { LOGIN_USER} from '../utils/mutations';
 import Auth from '../utils/auth';
 
+// Stylings
+const formStyle = {
+  background: '#DED5C4',
+  borderRadius: '15px'
+}
+const textColor = {
+  color: '#305973',
+  fontWeight: 'bold'
+}
+const orangeButtonStyle = {
+  background: '#EF7E56',
+  textColor: '#F9F9F9',
+  border: 'none',
+  borderRadius: '15px',
+  margin: '10px',
+}
+const blueButtonStyle = {
+  background: '#305973',
+  textColor: '#F9F9F9',
+  border: 'none',
+  borderRadius: '15px',
+  margin: '10px',
+}
+
+
 const Login = () => {
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
@@ -30,12 +55,9 @@ const Login = () => {
       const response = await loginUser({
         variables: {...userFormData}
       });
+      console.log(response)
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
-
-      const { token, user } = await response.json();
+      const { token, user } = response.data.login
       console.log(user);
       Auth.login(token);
     } catch (err) {
@@ -52,12 +74,12 @@ const Login = () => {
 
   return (
     <>
-      <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+      <Form noValidate validated={validated} onSubmit={handleFormSubmit} className='p-3' style={formStyle}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
           Something went wrong with your login credentials!
         </Alert>
         <Form.Group>
-          <Form.Label htmlFor='email'>Email</Form.Label>
+          <Form.Label style={textColor} htmlFor='email'>Email</Form.Label>
           <Form.Control
             type='text'
             placeholder='Your email'
@@ -70,7 +92,7 @@ const Login = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
+          <Form.Label style={textColor} htmlFor='password'>Password</Form.Label>
           <Form.Control
             type='password'
             placeholder='Your password'
@@ -84,7 +106,7 @@ const Login = () => {
         <Button
           disabled={!(userFormData.email && userFormData.password)}
           type='submit'
-          variant='success'>
+          style={validated === false ? orangeButtonStyle : blueButtonStyle}>
           Submit
         </Button>
       </Form>
