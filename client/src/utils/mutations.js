@@ -24,5 +24,17 @@ export const ADD_USER = gql`
   }
 `;
 
-
-
+export const ADD_POST = gql `
+  mutation addPost($postData: postInput!) {
+    addPost(postData: $postInput) {
+      _id
+      name
+      street
+      city
+      state
+      zip
+      category
+      post_body
+    }
+  }
+`;
