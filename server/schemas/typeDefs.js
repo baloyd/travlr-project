@@ -1,18 +1,15 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-
     type Query {
         location: [Location]
         post: [Post]
         user: [User]
     }
-
     type Auth {
         token: ID!
         user: User
     }
-
     type Location {
         _id: ID!
         location_name: String!
@@ -21,31 +18,41 @@ const typeDefs = gql`
         city_name: String!
         cata: String!
     }
-
+    #  
     type Post {
+        _id: ID!
+        name: String!
+        street: String
+        city: String!
+        state: String!
+        zip: Int
+        category: String!
         post_body: String!
-        author: String!
-        favorites: Int
+        # should we place this in it's own typedef for posted recommendations?
+        # author: String!
+        # favorites: Int
     }
-
+    # input type that helps us reduce the amount of parameters we have to type in the mutation
+    input postInput {
+        name: String!
+        street: String
+        city: String!
+        state: String!
+        zip: Int
+        category: String!
+        post_body: String!
+    }
     type User {
         _id: ID!
         username: String!
         email: String!
         post: [ID]
     }   
-
     type Mutation {
         login(email: String! password: String!): Auth
         addUser(username: String! email: String! password: String!): Auth
-<<<<<<< HEAD
-        addLocation(location_name: String!, location_address: String!): Location
-        addPost(post_body: String!): Post
-
-=======
         addLocation: Location
-        addPost: Post
->>>>>>> 7f9d415d371f57615c7a374058643088a2371ae4
+        addPost(postData: postInput!): Post
     }
 `;
 

@@ -1,16 +1,12 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Location, Post, User } = require('../models');
+const { Cata, City, Location, Post, Region, State, User } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-<<<<<<< HEAD
-    },
-=======
->>>>>>> 7f9d415d371f57615c7a374058643088a2371ae4
 
     },
-    
+
     Mutation: {
         //creating a user that requires some parameters, signs a token and sends it back to the client
         addUser: async (parent, { username, email, password }) => {
@@ -26,15 +22,12 @@ const resolvers = {
             return location;
         },
 
-<<<<<<< HEAD
-=======
-        addPost: async (parent, {title, body}) => {
-            const post = await Post.create({title, body});
+        addPost: async (parent, { postData }) => {
+            const post = await Post.create({ postData });
 
             return post;
         },
 
->>>>>>> 7f9d415d371f57615c7a374058643088a2371ae4
         //create the login
         login: async (parent, { email, password }) => {
             //create a user variable that looks for an email
