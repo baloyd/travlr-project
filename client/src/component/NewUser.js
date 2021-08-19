@@ -57,7 +57,7 @@ const NewUser = () => {
       const response = await addUser({
         variables: {...userFormData}
       });
-console.log(response)
+      console.log(response)
       // if (!response.ok) {
       //   throw new Error('something went wrong!');
       // }
@@ -94,7 +94,7 @@ console.log(response)
             name='username'
             onChange={handleInputChange}
             value={userFormData.username}
-            required
+            required 
           />
           <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
         </Form.Group>

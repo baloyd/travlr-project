@@ -1,11 +1,13 @@
 import React, { useState } from  'react'
 import { Form, Row, Col, Button, Container } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
+import Modal from './Modal';
 
 // Stylings
 const formStyle = {
     background: '#DED5C4',
-    borderRadius: '15px'
+    borderRadius: '15px',
+    width:'45rem'
 }
 const textColor = {
     color: '#305973',
@@ -30,38 +32,22 @@ const CreateRec = ()=>{
     const [validated, setValidated] = useState(false);
     const [formState, setFormState] = useState({
         recPlace: '',
+        street: '',
         city: '',
         state: '',
-        type: '',
+        zip: '',
+        category: '',
         comment: ''
     });
 
     //Need to add graphql mutation name ---->ADD_FORM?
     //Also inMemoryCache? ex.20.components.thoughForm
-    const [addForm, { error }] = useMutation()
+    // const [addPost, { error }] = useMutation();
 
 
     //Handles form submission
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        try {
-            const { data } = await addForm({
-                variables: {
-                    ...
-                    formState },
-            });
-
-            setFormState({
-                recPlace: '',
-                city: '',
-                state: '',
-                type: '',
-                comment: ''
-            })
-        } catch(err) {
-            console.log(err)
-        }
 
         //Handles form validation
         const form = event.currentTarget
@@ -70,18 +56,38 @@ const CreateRec = ()=>{
             event.stopPropagation();
         }
         setValidated(true);
+
+        // try {
+        //     const { data } = await addPost({
+        //         variables: {
+        //             ...
+        //             formState },
+        //     });
+
+        //     console.log(data);
+
+        // } catch(err) {
+        //     console.log(err)
+        // }
+
+        setFormState({
+            recPlace: '',
+            street: '',
+            city: '',
+            state: '',
+            zip: '',
+            category: '',
+            comment: ''
+        })
+
     };
 
-    //Handles changes to form
+    // Handles changes to form
     const handleChange = (event) => {
         const { name, value } = event.target;
-
-        if(name === 'recPlace') {
-            setFormState({...formState, [name]:value});
-        } else if (name !== 'recPlace') {
-            setFormState({...formState, [name]:value});
-        }
+        setFormState({...formState, [name]: value});
     }
+    
 
     return(
         <Container>
@@ -92,8 +98,8 @@ const CreateRec = ()=>{
                     <Form.Control
                         required
                         name='recPlace'
-                        value={formState.recPlace}
-                        onChange={handleChange}
+                        // value={formState.recPlace}
+                        // onChange={handleChange}
                         type="text"
                         placeholder="Miami Beach"
                     />
@@ -103,39 +109,77 @@ const CreateRec = ()=>{
                 </Form.Group>
 
                 <Row className="g-2 mb-3">
+                    <Form.Group as={Col} className="mb-3">
+                        <Form.Label style={textColor}>Street</Form.Label>
+                        <Form.Control
+                        required
+                        name='street'
+                        // value={formState.street}
+                        // onChange={handleChange}
+                        type="text"
+                        placeholder="1001 Ocean Dr"
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a valid street address.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
                     <Form.Group as={Col}>
                         <Form.Label style={textColor}>City</Form.Label>
                         <Form.Control 
                         name='city'
-                        value={formState.city}
-                        onChange={handleChange}
+                        // value={formState.city}
+                        // onChange={handleChange}
                         type="text" placeholder="Miami" 
                         required />
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid city.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col}>
-                        <Form.Label style={textColor}>State</Form.Label>
+                </Row>
+
+                <Row className="g-2 mb-3">
+                    <Form.Group as={Col} required>
+                        <Form.Label style={textColor}>Select State</Form.Label>
                         <Form.Control 
-                        name='state'
-                        value={formState.state}
-                        onChange={handleChange}
-                        type="text" placeholder="Florida" required />
+                            required 
+                            name='type'
+                            // value={formState.state}
+                            // onChange={handleChange}
+                            as="select" 
+                            type="select">
+                                <option value="">Select State</option>
+                                <option value="Activity">Florida</option>
+                        </Form.Control>
                         <Form.Control.Feedback type="invalid">
-                            Please provide a valid state.
+                            Please choose a state.
                         </Form.Control.Feedback>
                     </Form.Group>
-                    <Form.Group as={Col} required>
-                        <Form.Label style={textColor}>Select Type</Form.Label>
+
+                    <Form.Group as={Col}>
+                        <Form.Label style={textColor}>Zip Code</Form.Label>
                         <Form.Control 
-                        required 
-                        name='type'
-                        value={formState.type}
-                        onChange={handleChange}
-                        as="select" 
-                        type="select">
-                                <option value="">Select an Option</option>
+                            name='zip'
+                            // value={formState.zip}
+                            // onChange={handleChange}
+                            type="text" 
+                            placeholder="33139" 
+                            required />
+                        <Form.Control.Feedback type="invalid">
+                            Please provide a valid zip code.
+                        </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group as={Col} required>
+                        <Form.Label style={textColor}>Select Category</Form.Label>
+                        <Form.Control 
+                            required 
+                            name='type'
+                            // value={formState.category}
+                            // onChange={handleChange}
+                            as="select" 
+                            type="select">
+                                <option value="">Select Category</option>
                                 <option value="Activity">Activity</option>
                                 <option value="Restaurant">Restaurant</option>
                                 <option value="Landmark">Landmark</option>
@@ -151,8 +195,8 @@ const CreateRec = ()=>{
                     <Form.Control
                         required
                         name='comment'
-                        value={formState.comment}
-                        onChange={handleChange}
+                        // value={formState.comment}
+                        // onChange={handleChange}
                         as="textarea"
                         placeholder="Amazing beach, great restaurants, cool shops and overall great place to vacation! Will definitely be coming back!"
                         style={{ height: '100px' }}
