@@ -4,7 +4,10 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-
+        post: async(parent, { _id }) => {
+            const params = _id ? { _id } : {};
+            return Post.find(params);
+        }
     },
 
     Mutation: {
