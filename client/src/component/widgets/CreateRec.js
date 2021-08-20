@@ -38,12 +38,12 @@ const CreateRec = ()=>{
         state: '',
         zip: '',
         category: '',
-        post_body: ''
+        // post_body: ''
     });
 
     //Need to add graphql mutation name ---->ADD_FORM?
     //Also inMemoryCache? ex.20.components.thoughForm
-    // const [addPost, { error }] = useMutation(ADD_POST);
+    const [addPost, { error }] = useMutation(ADD_POST);
 
 
     //Handles form submission
@@ -58,18 +58,16 @@ const CreateRec = ()=>{
         }
         setValidated(true);
 
-        // try {
-        //     const { data } = await addPost({
-        //         variables: {
-        //             ...
-        //             formState },
-        //     });
+        try {
+            const { data } = await addPost({
+                variables: { ...formState },
+            });
 
-        //     console.log(data);
+            console.log(data);
 
-        // } catch(err) {
-        //     console.log(err)
-        // }
+        } catch(err) {
+            console.log(err)
+        }
 
         setFormState({
             name: '',
@@ -78,7 +76,7 @@ const CreateRec = ()=>{
             state: '',
             zip: '',
             category: '',
-            post_body: ''
+            // post_body: ''
         })
 
     };
@@ -99,8 +97,8 @@ const CreateRec = ()=>{
                     <Form.Control
                         required
                         name='name'
-                        // value={formState.name}
-                        // onChange={handleChange}
+                        value={formState.name}
+                        onChange={handleChange}
                         type="text"
                         placeholder="Miami Beach"
                     />
@@ -115,8 +113,8 @@ const CreateRec = ()=>{
                         <Form.Control
                         required
                         name='street'
-                        // value={formState.street}
-                        // onChange={handleChange}
+                        value={formState.street}
+                        onChange={handleChange}
                         type="text"
                         placeholder="1001 Ocean Dr"
                         />
@@ -129,8 +127,8 @@ const CreateRec = ()=>{
                         <Form.Label style={textColor}>City</Form.Label>
                         <Form.Control 
                         name='city'
-                        // value={formState.city}
-                        // onChange={handleChange}
+                        value={formState.city}
+                        onChange={handleChange}
                         type="text" placeholder="Miami" 
                         required />
                         <Form.Control.Feedback type="invalid">
@@ -144,8 +142,8 @@ const CreateRec = ()=>{
                         <Form.Label style={textColor}>State</Form.Label>
                         <Form.Control 
                             name='state'
-                            // value={formState.state}
-                            // onChange={handleChange}
+                            value={formState.state}
+                            onChange={handleChange}
                             type="text" 
                             placeholder="FL" 
                             required />
@@ -158,8 +156,8 @@ const CreateRec = ()=>{
                         <Form.Label style={textColor}>Zip Code</Form.Label>
                         <Form.Control 
                             name='zip'
-                            // value={formState.zip}
-                            // onChange={handleChange}
+                            value={formState.zip}
+                            onChange={handleChange}
                             type="text" 
                             placeholder="33139" 
                             required />
@@ -172,9 +170,9 @@ const CreateRec = ()=>{
                         <Form.Label style={textColor}>Select Category</Form.Label>
                         <Form.Control 
                             required 
-                            name='type'
-                            // value={formState.category}
-                            // onChange={handleChange}
+                            name='category'
+                            value={formState.category}
+                            onChange={handleChange}
                             as="select" 
                             type="select">
                                 <option value="">Select Category</option>
@@ -188,13 +186,13 @@ const CreateRec = ()=>{
                     </Form.Group>
                 </Row>
 
-                <Form.Group>
+                {/* <Form.Group>
                     <Form.Label style={textColor}>Comments about Recommended</Form.Label>
                     <Form.Control
                         required
                         name='post-body'
                         // value={formState.post_body}
-                        // onChange={handleChange}
+                        onChange={handleChange}
                         as="textarea"
                         placeholder="Amazing beach, great restaurants, cool shops and overall great place to vacation! Will definitely be coming back!"
                         style={{ height: '100px' }}
@@ -202,7 +200,7 @@ const CreateRec = ()=>{
                     <Form.Control.Feedback type="invalid">
                             Please write a comment about your recommendation.
                     </Form.Control.Feedback>
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group className='d-flex justify-content-end'>
                     <Button type="submit" style={validated === false ? orangeButtonStyle : blueButtonStyle}>Submit</Button>

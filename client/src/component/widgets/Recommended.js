@@ -3,10 +3,10 @@ import ModalPost from './ModalPost';
 import { Container, Card, Button } from 'react-bootstrap';
 
 // Stylings
-const textColor = {
-    color: '#305973',
-    fontWeight: 'bold'
-}
+// const textColor = {
+//     color: '#305973',
+//     fontWeight: 'bold'
+// }
 const cardStyle = {
     background: '#DED5C4',
     color: '#305973',

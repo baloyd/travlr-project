@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
+// import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ApolloClient,InMemoryCache, ApolloProvider} from '@apollo/client';
 import NavBar from './component/NavBar';
