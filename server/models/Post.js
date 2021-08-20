@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongodb');
 const { Schema, model } = require('mongoose');
 
 const postSchema = new Schema({
@@ -30,7 +29,9 @@ const postSchema = new Schema({
         required: true
     },
     author:
-        { type: String, required: true },
+        { type: String, 
+        required: true
+    },
     favorites:
         { type: Number }
 })

@@ -32,7 +32,7 @@ const blueButtonStyle = {
 const CreateRec = ()=>{
     const [validated, setValidated] = useState(false);
     const [formState, setFormState] = useState({
-        recPlace: '',
+        name: '',
         street: '',
         city: '',
         state: '',
@@ -72,13 +72,13 @@ const CreateRec = ()=>{
         // }
 
         setFormState({
-            recPlace: '',
+            name: '',
             street: '',
             city: '',
             state: '',
             zip: '',
             category: '',
-            comment: ''
+            post_body: ''
         })
 
     };
@@ -98,8 +98,8 @@ const CreateRec = ()=>{
                     <Form.Label style={textColor}>Name of Recommended Place</Form.Label>
                     <Form.Control
                         required
-                        name='recPlace'
-                        // value={formState.recPlace}
+                        name='name'
+                        // value={formState.name}
                         // onChange={handleChange}
                         type="text"
                         placeholder="Miami Beach"
@@ -192,7 +192,7 @@ const CreateRec = ()=>{
                     <Form.Label style={textColor}>Comments about Recommended</Form.Label>
                     <Form.Control
                         required
-                        name='comment'
+                        name='post-body'
                         // value={formState.post_body}
                         // onChange={handleChange}
                         as="textarea"
@@ -213,5 +213,3 @@ const CreateRec = ()=>{
 }
 
 export default CreateRec;
-
-//Still have to set the correct mutation
