@@ -1,6 +1,7 @@
 import React, { useState } from  'react'
 import { Form, Row, Col, Button, Container } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
+import {ADD_POST} from '../../utils/mutations';
 
 // Stylings
 const formStyle = {
@@ -37,12 +38,12 @@ const CreateRec = ()=>{
         state: '',
         zip: '',
         category: '',
-        comment: ''
+        post_body: ''
     });
 
     //Need to add graphql mutation name ---->ADD_FORM?
     //Also inMemoryCache? ex.20.components.thoughForm
-    // const [addPost, { error }] = useMutation();
+    // const [addPost, { error }] = useMutation(ADD_POST);
 
 
     //Handles form submission
@@ -192,7 +193,7 @@ const CreateRec = ()=>{
                     <Form.Control
                         required
                         name='comment'
-                        // value={formState.comment}
+                        // value={formState.post_body}
                         // onChange={handleChange}
                         as="textarea"
                         placeholder="Amazing beach, great restaurants, cool shops and overall great place to vacation! Will definitely be coming back!"

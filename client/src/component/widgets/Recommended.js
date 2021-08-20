@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// import Modal from './Modal';
-import { Container, CardColumns, Card, Button } from 'react-bootstrap';
+import ModalPost from './ModalPost';
+import { Container, Card, Button } from 'react-bootstrap';
 
 // Stylings
 const textColor = {
@@ -34,9 +34,9 @@ const Recommended=({ comments=[] })=>{
     // }   
 
     // //State variables for Modal
-    const [show, setShow] = useState(false);
+    // const [show, setShow] = useState(false);
 
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
 
     // State Variables
     const [likes, setLikes] = useState(0);
@@ -59,8 +59,8 @@ const Recommended=({ comments=[] })=>{
     return(
         <Container>
             {/* {comments && comments.map((comment)=> */}
-            <Card onClick={handleShow} className='my-1' style={cardStyle} text='#305973'>
-                <Card.Body>
+            <Card className='my-1' style={cardStyle} text='#305973'>
+                <Card.Body onClick={ModalPost.handleShow}>
                     <Card.Title>Username</Card.Title>
                     <Card.Subtitle className="mb-2">Location Name, City</Card.Subtitle>
                     <Card.Text>
