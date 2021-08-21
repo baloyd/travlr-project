@@ -1,12 +1,12 @@
-// import { useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
-// import { QUERY_POST } from '../../utils/queries';
+import { QUERY_POST } from '../../utils/queries';
 // import ModalPost from './ModalPost';
 import { Container, Card, Button } from 'react-bootstrap';
 
 // Stylings
 const text = {
-    color: '#305973',
+    color: '#F9F9F9',
     fontWeight: 'bold'
 }
 const cardStyle = {
@@ -29,7 +29,7 @@ const blueButtonStyle = {
     margin: '10px',
 }
 
-const Recommended = ({comment}) => {
+const Recommended = () => {
     // console.log(comments);
     // if(!comments.length){
     //     return <h3 className={textColor}>No Recommendations Yet! </h3>
@@ -85,7 +85,7 @@ const Recommended = ({comment}) => {
                     </Card.Text>
                 </Card.Body>
             </Card>
-            )) : (<div><h4 align='center' style={text}>No Recommendations Yet! </h4></div>) }
+            )) : (<div><h3 align='center' style={text}>No Recommendations Yet! </h3></div>)}
         </Container>
     )
 
