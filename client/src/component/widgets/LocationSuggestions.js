@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Button } from 'react-bootstrap';
+import { QUERY_POST} from '../../utils/queries';
+import { useQuery } from '@apollo/client';
 
 // Stylings
 const locationStyle = {
@@ -25,38 +27,49 @@ const blueButtonStyle = {
     margin: '10px',
 }
 
-const LocationSuggestions =({ states = [], cities = [] })=>{
+const LocationSuggestions =()=>{
+
+    const { loading, data } = useQuery(QUERY_POST);
+    console.log(data);
+    const comments = data?.post || [];
+
+    console.log(comments);
+    
 
     //Handles toggle effect on buttons
     const [isToggled, setIsToggled] = useState(false);
-    const handleToggle = () => setIsToggled(!isToggled);
+    const handleToggle = () => {
+        setIsToggled(!isToggled);
+        window.location.assign('/LocationPage');
+    }
+    
 
     return (
         <Container fluid>
             <Container className='col-md-6' style={locationStyle}>
                 {/* State Div Buttons */}
-                <div className='py-3' style={textColor}>
+                {/* <div className='py-3' style={textColor}>
                     
-                    <h3>States:</h3>
-                    {states && states.map((state, index)=>(
-                        <Button 
+                    <h5>States:</h5>
+                    {!loading ? comments.map((comment)=>(
+                        <Button size='sm'
                         onClick={handleToggle}
                         style={isToggled === false ? orangeButtonStyle : blueButtonStyle}  
-                        key={`state-${index}`} size='lg'>{state}</Button>
-                    ))}
+                        size='lg'>{comment.state}</Button>
+                    )) : (<div><h5>No States to choose from!</h5></div>)}
                     
-                </div>
+                </div> */}
+
                 {/* City Div Buttons */}
                 <div className='pb-3' style={textColor}>
 
-                    <h3>Cities:</h3>
-                    {cities && cities.map((city,index)=>(
+                    <h5>Cities:</h5>
+                    {!loading ? comments.map((comment)=>(
                     <Button 
                     onClick={handleToggle}
-                    style={isToggled === false ? orangeButtonStyle : blueButtonStyle} 
-                    key={`cities-${index}`} 
-                    size='lg'>{city}</Button>
-                    ))}
+                    style={isToggled === false ? orangeButtonStyle : blueButtonStyle}
+                    size='lg'>{comment.city}</Button>
+                    )) : (<div><h5>No States to choose from!</h5></div>)}
                     
                 </div>
                     
