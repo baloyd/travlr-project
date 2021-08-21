@@ -9,7 +9,7 @@ const typeDefs = gql`
 
      
     type Post {
-        # _id: ID!
+        _id: ID!
         name: String!
         street: String
         city: String!
@@ -49,7 +49,7 @@ const typeDefs = gql`
         login(email: String! password: String!): Auth
         addUser(username: String! email: String! password: String!): Auth
         # addPost(postData: postInput!): Post
-        addPost(name:String! street:String! city:String! state:String! zip:String!, category:String!, post_body:String! ): Post
+        addPost(_id: ID! name:String! street:String! city:String! state:String! zip:String!, category:String!, post_body:String! ) : Post
     }
 `;
 

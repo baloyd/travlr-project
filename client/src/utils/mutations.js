@@ -40,9 +40,9 @@ export const ADD_USER = gql`
 // `;
 
 export const ADD_POST = gql `
-  mutation addPost($name: String!,$street:String!,$city:String!,$state:String!,$zip:String!, $category:String!, $post_body:String!) {
-    addPost(name:$name, street:$street, city:$city, state:$state, zip:$zip,category:$category,post_body:$post_body) {
-      
+  mutation addPost($_id: ID! $name: String!,$street:String!,$city:String!,$state:String!,$zip:String!, $category:String!, $post_body:String!) {
+    addPost(_id:$_id name:$name, street:$street, city:$city, state:$state, zip:$zip,category:$category,post_body:$post_body) {
+      _id
       name
       street
       city
