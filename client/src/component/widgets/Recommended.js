@@ -28,11 +28,7 @@ const blueButtonStyle = {
 }
 
 const Recommended=({ comments=[] })=>{
-    // console.log(comments);
-    // if(!comments.length){
-    //     return <h3 className={textColor}>No Recommendations Yet! </h3>
-    // }   
-
+     
     // //State variables for Modal
     // const [show, setShow] = useState(false);
 
