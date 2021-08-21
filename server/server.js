@@ -28,6 +28,8 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.get('*', (req, res) => {
+  var fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  console.log(fullUrl)
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 

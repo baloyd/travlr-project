@@ -1,7 +1,6 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-
     type Auth {
         token: ID!
         user: User
@@ -21,7 +20,6 @@ const typeDefs = gql`
         # author: String!
         # favorites: Int
     }
-
     # input type that helps us reduce the amount of parameters we have to type in the mutation
     # input postInput {
     #     name: String!
@@ -43,13 +41,18 @@ const typeDefs = gql`
     type Query {
         post: [Post]
         user: [User]
+        postByCat(category: String): [Post]
     }
 
     type Mutation {
         login(email: String! password: String!): Auth
         addUser(username: String! email: String! password: String!): Auth
         # addPost(postData: postInput!): Post
-        addPost(_id: ID! name:String! street:String! city:String! state:String! zip:String!, category:String!, post_body:String! ) : Post
+        addPost(name:String! street:String! city:String! state:String! zip:String!, category:String!, post_body:String! ) : Post
+
+    
+
+
     }
 `;
 
