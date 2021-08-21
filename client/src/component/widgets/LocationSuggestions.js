@@ -72,12 +72,12 @@ const LocationSuggestions =()=>{
                     )) : (<div><h5>No States to choose from!</h5></div>)}
                     
                 </div>
-                    
-                
+
+
             </Container>
         </Container>
     )
-    
+
 }
 
 export default LocationSuggestions;
