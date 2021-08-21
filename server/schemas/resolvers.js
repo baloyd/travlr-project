@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { Cata, City, Location, Post, Region, State, User } = require('../models');
+const {  Post,  User } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -19,14 +19,14 @@ const resolvers = {
             return { token, user };
         },
 
-        addLocation: async (parent, { name, address }) => {
-            const location = await Location.create({ name, address });
+        // addLocation: async (parent, { name, address }) => {
+        //     const location = await Location.create({ name, address });
 
-            return location;
-        },
+        //     return location;
+        // },
 
-        addPost: async (parent, { postData }) => {
-            const post = await Post.create({ postData });
+        addPost: async (parent, { name, street, city, state, zip, category, post_body }) => {
+            const post = await Post.create({ name, street, city, state, zip, category, post_body });
             
             return post;
         },

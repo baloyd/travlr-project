@@ -1,6 +1,7 @@
 import React, { useState } from  'react'
 import { Form, Row, Col, Button, Container } from 'react-bootstrap';
 import { useMutation } from '@apollo/client';
+import {ADD_POST} from '../../utils/mutations';
 
 // Stylings
 const formStyle = {
@@ -31,18 +32,18 @@ const blueButtonStyle = {
 const CreateRec = ()=>{
     const [validated, setValidated] = useState(false);
     const [formState, setFormState] = useState({
-        recPlace: '',
+        name: '',
         street: '',
         city: '',
         state: '',
         zip: '',
         category: '',
-        comment: ''
+        post_body: ''
     });
 
     //Need to add graphql mutation name ---->ADD_FORM?
     //Also inMemoryCache? ex.20.components.thoughForm
-    // const [addPost, { error }] = useMutation();
+    const [addPost, { error }] = useMutation(ADD_POST);
 
 
     //Handles form submission
@@ -57,27 +58,25 @@ const CreateRec = ()=>{
         }
         setValidated(true);
 
-        // try {
-        //     const { data } = await addPost({
-        //         variables: {
-        //             ...
-        //             formState },
-        //     });
+        try {
+            const { data } = await addPost({
+                variables: { ...formState },
+            });
 
-        //     console.log(data);
+            console.log(data);
 
-        // } catch(err) {
-        //     console.log(err)
-        // }
+        } catch(err) {
+            console.log(err)
+        }
 
         setFormState({
-            recPlace: '',
+            name: '',
             street: '',
             city: '',
             state: '',
             zip: '',
             category: '',
-            comment: ''
+            post_body: ''
         })
 
     };
@@ -97,9 +96,9 @@ const CreateRec = ()=>{
                     <Form.Label style={textColor}>Name of Recommended Place</Form.Label>
                     <Form.Control
                         required
-                        name='recPlace'
-                        // value={formState.recPlace}
-                        // onChange={handleChange}
+                        name='name'
+                        value={formState.name}
+                        onChange={handleChange}
                         type="text"
                         placeholder="Miami Beach"
                     />
@@ -114,8 +113,8 @@ const CreateRec = ()=>{
                         <Form.Control
                         required
                         name='street'
-                        // value={formState.street}
-                        // onChange={handleChange}
+                        value={formState.street}
+                        onChange={handleChange}
                         type="text"
                         placeholder="1001 Ocean Dr"
                         />
@@ -128,8 +127,8 @@ const CreateRec = ()=>{
                         <Form.Label style={textColor}>City</Form.Label>
                         <Form.Control 
                         name='city'
-                        // value={formState.city}
-                        // onChange={handleChange}
+                        value={formState.city}
+                        onChange={handleChange}
                         type="text" placeholder="Miami" 
                         required />
                         <Form.Control.Feedback type="invalid">
@@ -143,8 +142,8 @@ const CreateRec = ()=>{
                         <Form.Label style={textColor}>State</Form.Label>
                         <Form.Control 
                             name='state'
-                            // value={formState.state}
-                            // onChange={handleChange}
+                            value={formState.state}
+                            onChange={handleChange}
                             type="text" 
                             placeholder="FL" 
                             required />
@@ -157,8 +156,8 @@ const CreateRec = ()=>{
                         <Form.Label style={textColor}>Zip Code</Form.Label>
                         <Form.Control 
                             name='zip'
-                            // value={formState.zip}
-                            // onChange={handleChange}
+                            value={formState.zip}
+                            onChange={handleChange}
                             type="text" 
                             placeholder="33139" 
                             required />
@@ -171,9 +170,9 @@ const CreateRec = ()=>{
                         <Form.Label style={textColor}>Select Category</Form.Label>
                         <Form.Control 
                             required 
-                            name='type'
-                            // value={formState.category}
-                            // onChange={handleChange}
+                            name='category'
+                            value={formState.category}
+                            onChange={handleChange}
                             as="select" 
                             type="select">
                                 <option value="">Select Category</option>
@@ -191,9 +190,9 @@ const CreateRec = ()=>{
                     <Form.Label style={textColor}>Comments about Recommended</Form.Label>
                     <Form.Control
                         required
-                        name='comment'
-                        // value={formState.comment}
-                        // onChange={handleChange}
+                        name='post_body'
+                        value={formState.post_body}
+                        onChange={handleChange}
                         as="textarea"
                         placeholder="Amazing beach, great restaurants, cool shops and overall great place to vacation! Will definitely be coming back!"
                         style={{ height: '100px' }}
@@ -212,5 +211,3 @@ const CreateRec = ()=>{
 }
 
 export default CreateRec;
-
-//Still have to set the correct mutation

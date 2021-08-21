@@ -1,7 +1,7 @@
 import React from 'react';
 import Recommended from '../widgets/Recommended';
 import LocationSuggestions from '../widgets/LocationSuggestions'
-import { Container, Row, Col, CardColumns } from 'react-bootstrap';
+import { Container, Row, CardColumns } from 'react-bootstrap';
 
 const headerStyle = {
     color:'#EF7E56',

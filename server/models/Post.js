@@ -28,12 +28,13 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    author:
-        { type: String, 
-        required: true
-    },
-    favorites:
-        { type: Number }
+    // author: { 
+    //     type: String, 
+    //     required: true,
+    //     trim: true
+    // },
+    // favorites:
+    //     { type: Number }
 })
 
 const Post = model('Post', postSchema);
