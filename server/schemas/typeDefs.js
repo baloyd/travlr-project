@@ -57,7 +57,7 @@ const typeDefs = gql`
         addUser(username: String! email: String! password: String!): Auth
         # addLocation: Location
         # addPost(postData: postInput!): Post
-        addPost(name:String! street:String! city:String! state:String! zip:String!, category:String!, post_body:String! )
+        addPost(name:String! street:String! city:String! state:String! zip:String!, category:String!, post_body:String!): Post
     }
 `;
 
