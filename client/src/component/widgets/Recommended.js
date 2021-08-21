@@ -1,12 +1,14 @@
+import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
-import ModalPost from './ModalPost';
+import { QUERY_POST } from '../../utils/queries';
+// import ModalPost from './ModalPost';
 import { Container, Card, Button } from 'react-bootstrap';
 
 // Stylings
-// const textColor = {
-//     color: '#305973',
-//     fontWeight: 'bold'
-// }
+const textColor = {
+    color: '#305973',
+    fontWeight: 'bold'
+}
 const cardStyle = {
     background: '#DED5C4',
     color: '#305973',
@@ -27,7 +29,7 @@ const blueButtonStyle = {
     margin: '10px',
 }
 
-const Recommended=({ comments=[] })=>{
+const Recommended = () => {
     // console.log(comments);
     // if(!comments.length){
     //     return <h3 className={textColor}>No Recommendations Yet! </h3>
@@ -37,6 +39,10 @@ const Recommended=({ comments=[] })=>{
     // const [show, setShow] = useState(false);
 
     // const handleShow = () => setShow(true);
+
+    //Query Variable
+    const { loading, data } = useQuery(QUERY_POST);
+    const comments = data?.comments || [];
 
     // State Variables
     const [likes, setLikes] = useState(0);
@@ -58,13 +64,13 @@ const Recommended=({ comments=[] })=>{
 
     return(
         <Container>
-            {/* {comments && comments.map((comment)=> */}
+            {loading ? comments.map((comment)=>(
             <Card className='my-1' style={cardStyle} text='#305973'>
-                <Card.Body onClick={ModalPost.handleShow}>
+                <Card.Body >
                     <Card.Title>Username</Card.Title>
-                    <Card.Subtitle className="mb-2">Location Name, City</Card.Subtitle>
+                    <Card.Subtitle className="mb-2">{comment.name}, {comment.city}</Card.Subtitle>
                     <Card.Text>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam turpis diam, sagittis sed tempor quis, rhoncus quis leo. Praesent ac magna massa. Quisque fringilla ullamcorper neque at sagittis. Etiam vitae fermentum erat. Vivamus tortor dui, tempus eu aliquet ut, gravida nec elit. Pellentesque eu neque neque. Donec non justo placerat, iaculis neque vitae, cursus diam. Curabitur fringilla quam eu ipsum congue eleifend. Praesent hendrerit metus eget mauris lacinia, sit amet rutrum turpis ultrices.
+                    {comment.post_body}
                     </Card.Text>
                     <Card.Text className='d-line align-items-center float-end'>
                         <small className="text-muted">{likes} Likes</small>
@@ -78,7 +84,7 @@ const Recommended=({ comments=[] })=>{
                     </Card.Text>
                 </Card.Body>
             </Card>
-           {/* ))} */}
+            )) : (<div><h3 className={textColor}>No Recommendations Yet! </h3></div>)}
         </Container>
     )
 
@@ -86,8 +92,3 @@ const Recommended=({ comments=[] })=>{
 
 export default Recommended;
 
-//Key  = Post._id?
-//Username = User.username
-//Location Name = Location.location_name
-//City = City.cityName
-//Body = Post.post_body
