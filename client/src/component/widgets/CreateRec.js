@@ -69,6 +69,8 @@ const CreateRec = ()=>{
             console.log(err)
         }
 
+        window.location.assign('/LocationPage');
+
         setFormState({
             name: '',
             street: '',
@@ -78,6 +80,8 @@ const CreateRec = ()=>{
             category: '',
             post_body: ''
         })
+
+        
 
     };
 

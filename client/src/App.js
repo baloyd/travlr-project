@@ -29,7 +29,8 @@ const client = new ApolloClient({
     const sectionStyle = {
       backgroundImage: `url(${background})`,
       backgroundSize: "cover",
-      margin: '0'
+      margin: '0',
+      height:'100vh'
     } 
     return (
       <ApolloProvider client={client}>

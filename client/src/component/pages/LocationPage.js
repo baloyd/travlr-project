@@ -2,6 +2,7 @@ import React from 'react';
 import Recommended from '../widgets/Recommended';
 import { Container, Row, CardColumns } from 'react-bootstrap';
 
+
 const headerStyle = {
     color:'#EF7E56',
     textAlign:'center',
