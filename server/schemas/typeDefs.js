@@ -1,26 +1,23 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-    type Query {
-        location: [Location]
-        post: [Post]
-        user: [User]
-    }
     type Auth {
         token: ID!
         user: User
     }
-    type Location {
-        _id: ID!
-        location_name: String!
-        location_address: String!
-        favorites: Int!
-        city_name: String!
-        cata: String!
-    }
+
+    # type Location {
+    #     _id: ID!
+    #     location_name: String!
+    #     location_address: String!
+    #     favorites: Int!
+    #     city_name: String!
+    #     cata: String!
+    # }
+
     #  
     type Post {
-        _id: ID!
+        # _id: ID!
         name: String!
         street: String
         city: String!
@@ -40,7 +37,7 @@ const typeDefs = gql`
         state: String!
         zip: Int
         category: String!
-        post_body: String!
+        # post_body: String!
     }
     type User {
         _id: ID!
@@ -48,11 +45,19 @@ const typeDefs = gql`
         email: String!
         post: [ID]
     }   
+
+    type Query {
+        # location: [Location]
+        post: [Post]
+        user: [User]
+    }
+
     type Mutation {
         login(email: String! password: String!): Auth
         addUser(username: String! email: String! password: String!): Auth
-        addLocation: Location
-        addPost(postData: postInput!): Post
+        # addLocation: Location
+        # addPost(postData: postInput!): Post
+        addPost(name:String! street:String! city:String! state:String! zip:String!, category:String!, post_body:String! )
     }
 `;
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Image, CloseButton, Button, Modal } from 'react-bootstrap';
+import { Row, Col, Image, Button, Modal } from 'react-bootstrap';
 
 const headerFooterStyles = {
     background: '#305973',

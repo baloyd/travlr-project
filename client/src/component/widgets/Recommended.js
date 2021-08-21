@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
-import { CardColumns, Card, Button } from 'react-bootstrap';
+import ModalPost from './ModalPost';
+import { Container, Card, Button } from 'react-bootstrap';
 
 // Stylings
-const textColor = {
-    color: '#305973',
-    fontWeight: 'bold'
-}
+// const textColor = {
+//     color: '#305973',
+//     fontWeight: 'bold'
+// }
 const cardStyle = {
     background: '#DED5C4',
     color: '#305973',
@@ -28,15 +28,15 @@ const blueButtonStyle = {
 }
 
 const Recommended=({ comments=[] })=>{
-    console.log(comments);
-    if(!comments.length){
-        return <h3 className={textColor}>No Recommendations Yet! </h3>
-    }   
+    // console.log(comments);
+    // if(!comments.length){
+    //     return <h3 className={textColor}>No Recommendations Yet! </h3>
+    // }   
 
-    //State variables for Modal
-    const [show, setShow] = useState(false);
+    // //State variables for Modal
+    // const [show, setShow] = useState(false);
 
-    const handleShow = () => setShow(true);
+    // const handleShow = () => setShow(true);
 
     // State Variables
     const [likes, setLikes] = useState(0);
@@ -46,24 +46,21 @@ const Recommended=({ comments=[] })=>{
     
     // Handles Likes 
     const handleLikesToggle = () => setIsLikesToggled(!isLikesToggled);
-   
     const handleLikesClick = ()=>{
         !isLikesToggled ? setLikes((likes + 1)) : setLikes((likes-1));
-       
     }
 
     // Handles Approvals
     const handleApprovalsToggle = () => setIsApprovalsToggled(!isApprovalsToggled);
-    
     const handleApprovalsClick = () =>{
         !isApprovalsToggled ? setApprovals((approvals + 1)) : setApprovals((approvals-1));
     }    
 
     return(
-        <CardColumns>
-            {comments && comments.map((comment)=>(
-            <Card onClick={handleShow} style={cardStyle} text='#305973'>
-                <Card.Body>s
+        <Container>
+            {/* {comments && comments.map((comment)=> */}
+            <Card className='my-1' style={cardStyle} text='#305973'>
+                <Card.Body onClick={ModalPost.handleShow}>
                     <Card.Title>Username</Card.Title>
                     <Card.Subtitle className="mb-2">Location Name, City</Card.Subtitle>
                     <Card.Text>
@@ -81,8 +78,8 @@ const Recommended=({ comments=[] })=>{
                     </Card.Text>
                 </Card.Body>
             </Card>
-           ))}
-        </CardColumns>
+           {/* ))} */}
+        </Container>
     )
 
 }
