@@ -63,10 +63,14 @@ const CreateRec = () => {
             });
             console.log('?????????????', error);
             console.log(data);
+            
 
         } catch (err) {
             console.log(err)
         }
+
+        
+        window.location.assign('/LocationPage');
 
         setFormState({
             name: '',
@@ -77,6 +81,8 @@ const CreateRec = () => {
             category: '',
             post_body: ''
         })
+
+        
 
     };
 

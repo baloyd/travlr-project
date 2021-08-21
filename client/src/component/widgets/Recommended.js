@@ -5,8 +5,8 @@ import { QUERY_POST } from '../../utils/queries';
 import { Container, Card, Button } from 'react-bootstrap';
 
 // Stylings
-const textColor = {
-    color: '#305973',
+const text = {
+    color: '#F9F9F9',
     fontWeight: 'bold'
 }
 const cardStyle = {
@@ -30,11 +30,7 @@ const blueButtonStyle = {
 }
 
 const Recommended = () => {
-    // console.log(comments);
-    // if(!comments.length){
-    //     return <h3 className={textColor}>No Recommendations Yet! </h3>
-    // }   
-
+      
     // //State variables for Modal
     // const [show, setShow] = useState(false);
 
@@ -85,7 +81,7 @@ const Recommended = () => {
                     </Card.Text>
                 </Card.Body>
             </Card>
-            )) : (<div><h3 className={textColor}>No Recommendations Yet! </h3></div>)}
+            )) : (<div><h3 align='center' style={text}>No Recommendations Yet! </h3></div>)}
         </Container>
     )
 

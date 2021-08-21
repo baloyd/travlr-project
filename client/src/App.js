@@ -12,30 +12,30 @@ import Footer from './component/Footer';
 
 
 const client = new ApolloClient({
-  request: (operation) => {
-    const token = localStorage.getItem('id_token');
+    request: (operation) => {
+      const token = localStorage.getItem('id_token');
+  
+      operation.setContext({
+        headers: {
+          authorization: token ? `Bearer ${token}` : '',
+        },
+      });
+    },
+    uri: '/graphql',
+    cache: new InMemoryCache(),
+  });
 
-    operation.setContext({
-      headers: {
-        authorization: token ? `Bearer ${token}` : '',
-      },
-    });
-  },
-  uri: '/graphql',
-  cache: new InMemoryCache(),
-});
-
-function App() {
-  const sectionStyle = {
-    backgroundImage: `url(${background})`,
-    backgroundSize: "cover",
-    margin: '0',
-    height: '100vh'
-  }
-  return (
-    <ApolloProvider client={client}>
-      <Router>
-        <>
+  function App() {
+    const sectionStyle = {
+      backgroundImage: `url(${background})`,
+      backgroundSize: "cover",
+      margin: '0',
+      height:'100vh'
+    } 
+    return (
+      <ApolloProvider client={client}>
+        <Router>
+          <>
           <NavBar />
           <Switch>
             <div className='bg-image' style={sectionStyle}>
