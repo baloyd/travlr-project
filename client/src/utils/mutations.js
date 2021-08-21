@@ -40,8 +40,8 @@ export const ADD_USER = gql`
 // `;
 
 export const ADD_POST = gql `
-  mutation addPost($name: String!,$street:String!,$city:String!,$state:String!,$zip:String!) {
-    addPost(name:$name, street:$street, city:$city, state:$state, zip:$zip) {
+  mutation addPost($name: String!,$street:String!,$city:String!,$state:String!,$zip:String!, $category:String!, $post_body:String!) {
+    addPost(name:$name, street:$street, city:$city, state:$state, zip:$zip,category:$category,post_body:$post_body) {
       
       name
       street
@@ -49,7 +49,7 @@ export const ADD_POST = gql `
       state
       zip
       category
-      # post_body
+      post_body
     }
   }
 `;

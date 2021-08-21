@@ -18,14 +18,14 @@ const typeDefs = gql`
 
     #  
     type Post {
-        _id: ID!
+        # _id: ID!
         name: String!
         street: String
         city: String!
         state: String!
         zip: Int
         category: String!
-        # post_body: String!
+        post_body: String!
         # should we place this in it's own typedef for posted recommendations?
         # author: String!
         # favorites: Int
@@ -59,8 +59,8 @@ const typeDefs = gql`
         login(email: String! password: String!): Auth
         addUser(username: String! email: String! password: String!): Auth
         # addLocation: Location
-        addPost(postData: postInput!): Post
-        # addPost(name:String! street:String! city:String! state:String! zip:String! )
+        # addPost(postData: postInput!): Post
+        addPost(name:String! street:String! city:String! state:String! zip:String!, category:String!, post_body:String! )
     }
 `;
 

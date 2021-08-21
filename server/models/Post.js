@@ -3,8 +3,7 @@ const { Schema, model } = require('mongoose');
 const postSchema = new Schema({
     name: {
         type: String,
-        // required: true,
-        require: 'You need to write the name of the recommended place',
+        required: true,
         unique: true
     },
     street: {
@@ -12,35 +11,30 @@ const postSchema = new Schema({
     },
     city: {
         type: String,
-        // required: true
-        require: 'Please write the city'
+        required: true
     },
     state: {
         type: String,
-        // required: true
-        required: 'Please write the state'
+        required: true
     },
     zip: {
         type: Number
     },
     category: {
         type: String,
-        // required: true
-        required: 'You need to choose a category'
+        required: true
     },
     post_body: {
         type: String,
-        // required: true
-        required: 'You must write a comment about your recommended place',
-        // minlength: 1
+        required: true
     },
-    author: { 
-        type: String, 
-        required: true,
-        trim: true
-    },
-    favorites:
-        { type: Number }
+    // author: { 
+    //     type: String, 
+    //     required: true,
+    //     trim: true
+    // },
+    // favorites:
+    //     { type: Number }
 })
 
 const Post = model('Post', postSchema);

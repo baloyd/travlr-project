@@ -38,7 +38,7 @@ const CreateRec = ()=>{
         state: '',
         zip: '',
         category: '',
-        // post_body: ''
+        post_body: ''
     });
 
     //Need to add graphql mutation name ---->ADD_FORM?
@@ -76,7 +76,7 @@ const CreateRec = ()=>{
             state: '',
             zip: '',
             category: '',
-            // post_body: ''
+            post_body: ''
         })
 
     };
@@ -186,12 +186,12 @@ const CreateRec = ()=>{
                     </Form.Group>
                 </Row>
 
-                {/* <Form.Group>
+                <Form.Group>
                     <Form.Label style={textColor}>Comments about Recommended</Form.Label>
                     <Form.Control
                         required
-                        name='post-body'
-                        // value={formState.post_body}
+                        name='post_body'
+                        value={formState.post_body}
                         onChange={handleChange}
                         as="textarea"
                         placeholder="Amazing beach, great restaurants, cool shops and overall great place to vacation! Will definitely be coming back!"
@@ -200,7 +200,7 @@ const CreateRec = ()=>{
                     <Form.Control.Feedback type="invalid">
                             Please write a comment about your recommendation.
                     </Form.Control.Feedback>
-                </Form.Group> */}
+                </Form.Group>
 
                 <Form.Group className='d-flex justify-content-end'>
                     <Button type="submit" style={validated === false ? orangeButtonStyle : blueButtonStyle}>Submit</Button>

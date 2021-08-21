@@ -25,8 +25,8 @@ const resolvers = {
         //     return location;
         // },
 
-        addPost: async (parent, { name, street, city, state, zip, category }) => {
-            const post = await Post.create({ name, street, city, state, zip, category });
+        addPost: async (parent, { name, street, city, state, zip, category, post_body }) => {
+            const post = await Post.create({ name, street, city, state, zip, category, post_body });
             
             return post;
         },
