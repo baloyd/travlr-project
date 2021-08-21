@@ -25,7 +25,7 @@ const blueButtonStyle = {
     margin: '10px',
 }
 
-const LocationSuggestions = ({ states = ["Florida", "New York", "California"], cities = ["Miami", "miami"] }) => {
+const LocationSuggestions = ({ states = [], cities = [] }) => {
 
 
     //Handles toggle effect on buttons

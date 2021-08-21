@@ -20,7 +20,7 @@ const resolvers = {
 
         addPost: async (parent, { name, street, city, state, zip, category, post_body }) => {
             const post = await Post.create({ name, street, city, state, zip, category, post_body });
-
+            console.log(post)
             return post;
         },
 
