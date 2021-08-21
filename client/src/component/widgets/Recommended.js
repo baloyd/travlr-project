@@ -42,7 +42,8 @@ const Recommended = () => {
 
     //Query Variable
     const { loading, data } = useQuery(QUERY_POST);
-    const comments = data?.comments || [];
+    const comments = data?.post || [];
+    console.log(comments);
 
     // State Variables
     const [likes, setLikes] = useState(0);
@@ -64,7 +65,7 @@ const Recommended = () => {
 
     return(
         <Container>
-            {loading ? comments.map((comment)=>(
+            {!loading ? comments.map((comment)=>(
             <Card className='my-1' style={cardStyle} text='#305973'>
                 <Card.Body >
                     <Card.Title>Username</Card.Title>
