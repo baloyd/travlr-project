@@ -1,14 +1,11 @@
-import { useQuery } from '@apollo/client';
+// import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
-import { QUERY_POST } from '../../utils/queries';
+// import { QUERY_POST } from '../../utils/queries';
 // import ModalPost from './ModalPost';
 import { Container, Card, Button } from 'react-bootstrap';
 
 // Stylings
-const text = {
-    color: '#F9F9F9',
-    fontWeight: 'bold'
-}
+
 const cardStyle = {
     background: '#DED5C4',
     color: '#305973',
@@ -29,17 +26,17 @@ const blueButtonStyle = {
     margin: '10px',
 }
 
-const Recommended = () => {
+const Recommended = (props) => {
       
     // //State variables for Modal
     // const [show, setShow] = useState(false);
 
     // const handleShow = () => setShow(true);
 
-    //Query Variable
-    const { loading, data } = useQuery(QUERY_POST);
-    const comments = data?.post || [];
-    console.log(comments);
+    // //Query Variable
+    // const { loading, data } = useQuery(QUERY_POST);
+    // const comments = data?.post || [];
+    // console.log(comments);
 
     // State Variables
     const [likes, setLikes] = useState(0);
@@ -61,13 +58,13 @@ const Recommended = () => {
 
     return(
         <Container>
-            {!loading ? comments.map((comment)=>(
-            <Card className='my-1' style={cardStyle} text='#305973'>
+            {/* { comments.map((comment)=>( */}
+            <Card key={`card-${props.id}`} className='my-1' style={cardStyle} text='#305973'>
                 <Card.Body >
-                    <Card.Title>Username</Card.Title>
-                    <Card.Subtitle className="mb-2">{comment.name}, {comment.city}</Card.Subtitle>
+                    <Card.Title>{props.name}</Card.Title>
+                    <Card.Subtitle className="mb-2">{props.city}</Card.Subtitle>
                     <Card.Text>
-                    {comment.post_body}
+                    {props.post_body}
                     </Card.Text>
                     <Card.Text className='d-line align-items-center float-end'>
                         <small className="text-muted">{likes} Likes</small>
@@ -81,7 +78,8 @@ const Recommended = () => {
                     </Card.Text>
                 </Card.Body>
             </Card>
-            )) : (<div><h3 align='center' style={text}>No Recommendations Yet! </h3></div>)}
+            {/* ))} */}
+             {/* : (<div><h3 align='center' style={text}>No Recommendations Yet! </h3></div>)} */}
         </Container>
     )
 
