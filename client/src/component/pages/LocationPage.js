@@ -43,14 +43,15 @@ const LocationPage = () =>{
     //Modal
     const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleClose = () => setComment(null);
+    // const handleShow = () => setShow(true);
     
 
     const [likes, setLikes] = useState(0);
     const [isLikesToggled, setIsLikesToggled] = useState(false);
     const handleLikesToggle = () => setIsLikesToggled(!isLikesToggled);
-   
+    const [comment, setComment] =useState(null);
+
     const handleLikesClick = ()=>{
         !isLikesToggled ? setLikes((likes + 1)) : setLikes((likes-1));
        
@@ -62,15 +63,15 @@ const LocationPage = () =>{
     // console.log(comments);
     
     const loop = (cat)=>{
-        
+        const arr = [];
         for(let i =0;i<comments.length;i++){
             if(comments[i].category===cat){
                 console.log(comments[i].name);
-                
-                    <Recommended onClick={handleShow} category={comments[i].category} key={comments[i]._id} name={comments[i].name} city={comments[i].city} post_body={comments[i].post_body}/>
+                    
+                arr.push(<Recommended onClick={()=>setComment(comments[i])} category={comments[i].category} key={comments[i]._id} name={comments[i].name} city={comments[i].city} post_body={comments[i].post_body}/>)
                     
                 }
-            }
+            } return arr;
             
         }
        
@@ -116,14 +117,14 @@ const LocationPage = () =>{
             
             <Modal 
                 size='xl'
-                show={show}
+                show={comment!=null}
                 onHide={handleClose}
                 backdrop='static'
                 keyboard={false}
             >
-                {comments.map((comment, index)=> (
+                {comment && 
                     <>
-                    <Modal.Header closeButton key={index} style={headerFooterStyles}>
+                    <Modal.Header closeButton style={headerFooterStyles}>
                         <Modal.Title>{comment.name}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body style={bodyStyles}>
@@ -152,7 +153,7 @@ const LocationPage = () =>{
                             handleLikesToggle();}}><i class="fas fa-heart"></i></Button>
                         </Modal.Footer>
                     </>
-                ))}
+                }
             </Modal>
             
 
