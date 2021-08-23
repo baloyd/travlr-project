@@ -64,15 +64,22 @@ const LocationSuggestions =()=>{
                 <div className='pb-3' style={textColor}>
 
                     <h5>Cities:</h5>
-                    {!loading ? comments.map((comment)=>(
+                    {!loading ? (
+                    <Button 
+                    onClick={handleToggle}
+                    style={isToggled === false ? orangeButtonStyle : blueButtonStyle}
+                    size='lg'>Miami</Button>
+                    ) : (<div><h5>No States to choose from!</h5></div>)}
+
+                    {/* Dynamically Built, have to fix repeat states bug */}
+                    {/* {!loading ? comments.map((comment)=>(
                     <Button 
                     onClick={handleToggle}
                     style={isToggled === false ? orangeButtonStyle : blueButtonStyle}
                     size='lg'>{comment.city}</Button>
-                    )) : (<div><h5>No States to choose from!</h5></div>)}
+                    )) : (<div><h5>No States to choose from!</h5></div>)}        */}
                     
                 </div>
-
 
             </Container>
         </Container>

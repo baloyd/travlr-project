@@ -6,6 +6,11 @@ const resolvers = {
     Query: {
         post: async () => {
             return Post.find({});
+        },
+
+        postByCat: async (_,{ category }) => {
+            console.log(category);
+            return Post.find(post=>post.category=category);
         }
     },
 

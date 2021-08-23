@@ -41,7 +41,7 @@ const typeDefs = gql`
     type Query {
         post: [Post]
         user: [User]
-        postByCat(category: String): [Post]
+        postByCat(category: String!): [Post]
     }
 
     type Mutation {

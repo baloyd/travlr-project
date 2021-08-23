@@ -27,7 +27,7 @@ const blueButtonStyle = {
 
 
 
-const ModalPost = ({ recPlace, username, category, street, city, state, zip, comment }) =>{
+const ModalPost = ({ name, username, category, street, city, state, zip, comment }) =>{
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
@@ -55,7 +55,7 @@ const ModalPost = ({ recPlace, username, category, street, city, state, zip, com
                 keyboard={false}
             >
                 <Modal.Header closeButton style={headerFooterStyles}>
-                    <Modal.Title>{recPlace}</Modal.Title>
+                    <Modal.Title>{name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={bodyStyles}>
                     <Row className='m-0'>
@@ -71,7 +71,7 @@ const ModalPost = ({ recPlace, username, category, street, city, state, zip, com
                 
                 
                 {/* Where map can go? */}
-                <Image rounded src="./images/test-img.png" fluid/>
+                {/* <Image rounded src="./images/test-img.png" fluid/> */}
 
                 <p className='mt-3'>Recommendation:</p>
 
