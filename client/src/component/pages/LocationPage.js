@@ -19,7 +19,6 @@ const headerStyle = {
 const headerFooterStyles = {
     background: '#305973',
     color: '#F9F9F9'
-    
 }
 const bodyStyles = {
     background: '#DED5C4',
@@ -46,6 +45,7 @@ const LocationPage = () =>{
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    
 
     const [likes, setLikes] = useState(0);
     const [isLikesToggled, setIsLikesToggled] = useState(false);
@@ -59,17 +59,19 @@ const LocationPage = () =>{
     //Query Variable
     const { loading, data } = useQuery(QUERY_POST);
     const comments = data?.post || [];
+    // console.log(comments);
     
     const loop = (cat)=>{
-        // let count = 0;
+        
         for(let i =0;i<comments.length;i++){
             if(comments[i].category===cat){
                 console.log(comments[i].name);
                 
-                    return <Recommended onClick={handleShow} key={comments[i]._id} name={comments[i].name} city={comments[i].city} post_body={comments[i].post_body}/>
-                 
+                    return <Recommended onClick={handleShow} category={comments[i].category} key={comments[i]._id} name={comments[i].name} city={comments[i].city} post_body={comments[i].post_body}/>
+                    
                 }
             }
+            
         }
        
 
@@ -77,7 +79,7 @@ const LocationPage = () =>{
         <Container>
             <Container>
                 <Row className='mb-5'>
-                    {/* <CardColumns className='col-xl-4 col-lg-10 col-sm-12'>
+                    <CardColumns className='col-xl-4 col-lg-10 col-sm-12'>
                         <h1 className='mt-3 bg-light' style={headerStyle}>Activities</h1>
                         <div style={{height: '500px'}} className='overflow-auto'>
                             <>
@@ -85,7 +87,7 @@ const LocationPage = () =>{
                             </>
                         </div>
                         
-                    </CardColumns> */}
+                    </CardColumns>
                     <CardColumns className='col-xl-4 col-lg-10 col-sm-12'>
                         <h1 className='mt-3 bg-light' style={headerStyle}>Food Spots</h1>
                         <div style={{height: '500px'}} className='overflow-auto'>
@@ -95,19 +97,19 @@ const LocationPage = () =>{
                         </div>
                         
                     </CardColumns>
-                    {/* <CardColumns className='col-xl-4 col-lg-10 col-sm-12'>
+                    <CardColumns className='col-xl-4 col-lg-10 col-sm-12'>
                         <h1 className='mt-3 bg-light' style={headerStyle}>Landmarks</h1>
                         <div style={{height: '500px'}} className='overflow-auto'>
                             
-                            {!loading ? (loop("Landmark")) : (<div><h3 align='center' style={text}>No Recommendations Yet! </h3></div>)} */}
+                            {!loading ? (loop("Landmark")) : (<div><h3 align='center' style={text}>No Recommendations Yet! </h3></div>)}
 
                             {/* {!loading ? comments.map((comment)=>(
                                 <Recommended onClick={handleShow} id={comment._id} name={comment.name} city={comment.city} post_body={comment.post_body}/>
                             )) : (<div><h3 align='center' style={text}>No Recommendations Yet! </h3></div>)} */}
-{/*                             
+                            
                         </div>
                         
-                    </CardColumns> */}
+                    </CardColumns>
                 </Row>
             </Container>
 
@@ -119,10 +121,9 @@ const LocationPage = () =>{
                 backdrop='static'
                 keyboard={false}
             >
-                {comments.map((comment)=>(
-                    
+                {comments.map((comment, index)=> (
                     <>
-                    <Modal.Header closeButton key={comment._id} style={headerFooterStyles}>
+                    <Modal.Header closeButton key={index} style={headerFooterStyles}>
                         <Modal.Title>{comment.name}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body style={bodyStyles}>

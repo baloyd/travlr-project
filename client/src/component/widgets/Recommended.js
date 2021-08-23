@@ -46,8 +46,8 @@ const Recommended = (props) => {
     return(
         <Container>
             <Card key={props.key} className='my-1' style={cardStyle} text='#305973'>
-                <Card.Body onClick={props.onClick}>
-                    <Card.Title>{props.name}</Card.Title>
+                <Card.Body>
+                    <Card.Title category={props.category} onClick={props.onClick}>{props.name}</Card.Title>
                     <Card.Subtitle className="mb-2">{props.city}</Card.Subtitle>
                     <Card.Text>
                     {props.post_body}
