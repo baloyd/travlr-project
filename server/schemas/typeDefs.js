@@ -16,20 +16,9 @@ const typeDefs = gql`
         zip: Int
         category: String!
         post_body: String!
-        # should we place this in it's own typedef for posted recommendations?
-        # author: String!
+        author: User
         # favorites: Int
     }
-    # input type that helps us reduce the amount of parameters we have to type in the mutation
-    # input postInput {
-    #     name: String!
-    #     street: String
-    #     city: String!
-    #     state: String!
-    #     zip: Int
-    #     category: String!
-    #     # post_body: String!
-    # }
 
     type User {
         _id: ID!
@@ -42,17 +31,20 @@ const typeDefs = gql`
         post: [Post]
         user: [User]
         postByCat(category: String!): [Post]
+        postByAuthor: [Post]
     }
 
     type Mutation {
         login(email: String! password: String!): Auth
         addUser(username: String! email: String! password: String!): Auth
-        # addPost(postData: postInput!): Post
-        addPost(name:String! street:String! city:String! state:String! zip:String!, category:String!, post_body:String! ) : Post
-
-    
-
-
+        addPost(
+            name:String!
+            street:String!
+            city:String! 
+            state:String! 
+            zip:String! 
+            category:String! 
+            post_body:String!) : Post
     }
 `;
 

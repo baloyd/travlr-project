@@ -11,6 +11,12 @@ const resolvers = {
         postByCat: async (_,{ category }) => {
             console.log(category);
             return Post.find(post=>post.category=category);
+        },
+
+        postByAuthor: async (parent,{ author }) => {
+            const postAuthor = await Post.findById(author._id).populate('User');
+
+            return postAuthor;
         }
     },
 
@@ -23,8 +29,8 @@ const resolvers = {
             return { token, user };
         },
 
-        addPost: async (parent, { name, street, city, state, zip, category, post_body }) => {
-            const post = await Post.create({ name, street, city, state, zip, category, post_body });
+        addPost: async (parent, { name, street, city, state, zip, category, post_body, author }) => {
+            const post = await Post.create({ name, street, city, state, zip, category, post_body, author });
             console.log(post)
             return post;
         },

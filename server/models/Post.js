@@ -28,11 +28,10 @@ const postSchema = new Schema({
         type: String,
         required: true
     },
-    // author: { 
-    //     type: String, 
-    //     required: true,
-    //     trim: true
-    // },
+    author: { 
+        type: Schema.Types.ObjectId, 
+        ref: 'User'
+    }
     // favorites:
     //     { type: Number }
 })
