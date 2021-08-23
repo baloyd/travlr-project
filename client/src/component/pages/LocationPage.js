@@ -67,7 +67,7 @@ const LocationPage = () =>{
             if(comments[i].category===cat){
                 console.log(comments[i].name);
                 
-                    return <Recommended onClick={handleShow} category={comments[i].category} key={comments[i]._id} name={comments[i].name} city={comments[i].city} post_body={comments[i].post_body}/>
+                    <Recommended onClick={handleShow} category={comments[i].category} key={comments[i]._id} name={comments[i].name} city={comments[i].city} post_body={comments[i].post_body}/>
                     
                 }
             }
