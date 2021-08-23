@@ -1,7 +1,4 @@
-// import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
-// import { QUERY_POST } from '../../utils/queries';
-// import ModalPost from './ModalPost';
 import { Container, Card, Button } from 'react-bootstrap';
 
 // Stylings
@@ -27,17 +24,7 @@ const blueButtonStyle = {
 }
 
 const Recommended = (props) => {
-      
-    // //State variables for Modal
-    // const [show, setShow] = useState(false);
-
-    // const handleShow = () => setShow(true);
-
-    // //Query Variable
-    // const { loading, data } = useQuery(QUERY_POST);
-    // const comments = data?.post || [];
-    // console.log(comments);
-
+    
     // State Variables
     const [likes, setLikes] = useState(0);
     const [isLikesToggled, setIsLikesToggled] = useState(false);
@@ -58,8 +45,7 @@ const Recommended = (props) => {
 
     return(
         <Container>
-            {/* { comments.map((comment)=>( */}
-            <Card key={`card-${props.id}`} className='my-1' style={cardStyle} text='#305973'>
+            <Card key={props.key} className='my-1' style={cardStyle} text='#305973'>
                 <Card.Body onClick={props.onClick}>
                     <Card.Title>{props.name}</Card.Title>
                     <Card.Subtitle className="mb-2">{props.city}</Card.Subtitle>
@@ -78,8 +64,6 @@ const Recommended = (props) => {
                     </Card.Text>
                 </Card.Body>
             </Card>
-            {/* ))} */}
-             {/* : (<div><h3 align='center' style={text}>No Recommendations Yet! </h3></div>)} */}
         </Container>
     )
 
