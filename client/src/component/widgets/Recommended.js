@@ -60,7 +60,7 @@ const Recommended = (props) => {
         <Container>
             {/* { comments.map((comment)=>( */}
             <Card key={`card-${props.id}`} className='my-1' style={cardStyle} text='#305973'>
-                <Card.Body >
+                <Card.Body onClick={props.onClick}>
                     <Card.Title>{props.name}</Card.Title>
                     <Card.Subtitle className="mb-2">{props.city}</Card.Subtitle>
                     <Card.Text>
