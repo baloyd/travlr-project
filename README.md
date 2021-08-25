@@ -25,7 +25,7 @@
   Link to the deployed application: https://travlr-proj.herokuapp.com/
 
   ## Contributors
-  [vyncent-t](https://github.com/vyncent-t), [junexii](https://github.com/junexii), [alkathos] (https://github.com/alkathos)
+  [vyncent-t](https://github.com/vyncent-t), [junexii](https://github.com/junexii), [alkathos](https://github.com/alkathos)
 
  
 
